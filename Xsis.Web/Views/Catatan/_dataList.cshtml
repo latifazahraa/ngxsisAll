@@ -1,0 +1,65 @@
+﻿@Model Xsis.Model.Catatan
+
+<link rel="stylesheet" href="~/Style/List.css" />
+<link href="~/Style/DetilPelamarPopup.css" rel="stylesheet" type="text/css" />
+
+<div class="container-fluid font-clr" style="background-color:red;">
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-striped" id="tblCttn">
+                <thead>
+                    <tr class="bdr-th">
+                        <th style="padding-bottom:18px;">JUDUL CATATAN</th>
+                        <th style="padding-bottom:18px;">JENIS CATATAN</th>
+                        <th style="padding-bottom:18px;">DIBUAT OLEH</th>
+                        <th style="padding-bottom:18px;">#</th>
+                    </tr>
+                </thead>
+                <tbody class="table-style" id="tBodyCttn"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        debugger;
+        var vStrHtml = '';
+        $.ajax
+        ({
+            url: '/Catatan/Tampil',
+            method: 'Get',
+            success: function (mdl)
+            {
+                debugger;
+                $.each(mdl, function (i, d)
+                { //menjahit data ke dalam tabel
+                    //if (d.is_delete == false)
+                    //{
+                        vStrHtml = vStrHtml + '<tr>' +
+                                '<td>' + d.title + '</td>' +
+                                '<td>' + d.note_type_id + '</td>' +
+                                '<td>' + d.created_by + '</td>' +
+                                '<td class="dropdown">' +
+                                   '<button class="btn btn-primary button-more btn-sm dropdown-toggle" type="button" data-toggle="dropdown">More &nbsp;' +
+                                   '<span class="caret"></span>' +
+                                   '</button>' +
+                                   '<ul class="dropdown-menu">' +
+                                   '<li><a href="" class="control clUbahSert" data-toggle="collapse" getDataSert="' + d.id + '">Ubah</a></li>' +
+                                   '<li><a href="" class="control clHapusSert" data-toggle="collapse" getFullSert=\'' + JSON.stringify(d) + '\'>Hapus</a></li>' +
+                                   '</ul>' +
+                                '</td>' +
+                                '</tr>';
+                    //}
+                });
+
+                $('#tBodyCttn').append(vStrHtml); //memasukan data yg sudah di jahit ke dalam body
+            },
+            error: function (mdl)
+            {
+                debugger;
+            }
+        });
+    });
+</script>

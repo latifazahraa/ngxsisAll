@@ -1,0 +1,230 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@model IEnumerable<Xsis.Model.Riwayat_Pendidikan>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .bgr-popup {
+        width: 1150px;
+        height: 680px;
+        border-color: #000080;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #000080;
+    }
+
+    .cntr-popup {
+        margin-left: 3.5%;
+    }
+
+    .hdr-popup {
+        height: 45px;
+        background-color: #000080;
+        color: white;
+    }
+
+    .cntr-hdr {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        justify-content: space-between; /*button exit na jadi gak nempel lagi ke modal title*/
+    }
+
+    .vertical-menu {
+        width: 230px;
+    }
+
+        .vertical-menu a {
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            align-content: center;
+            border-color: #000080;
+            border-style: solid;
+            border-width: 1px;
+            border-bottom-width: 0;
+            color: #000080;
+            padding-left: 20%;
+        }
+
+            .vertical-menu a:hover {
+                background-color: #b3b3ff;
+            }
+
+    .table-style {
+        border: 20px;
+        color: #000080;
+    }
+
+    .button-more {
+        background-color: #000080;
+        color: white;
+    }
+
+    .bgr-popup-sm {
+        border-color: #000080;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #000080;
+    }
+
+    .cntr-hdr-sm {
+        /*margin-left: 50%;*/
+        margin-top: 50%;
+    }
+
+    .modal-dialog-edit {
+        width: 800px;
+        margin-top: 7%;
+    }
+
+    .modal-content-edit {
+        margin: 0px;
+    }
+
+    .margin-set {
+        margin-bottom: 2px;
+        margin-left: 3px;
+        margin-right: 3px;
+        margin-top: 3px;
+    }
+
+    .hdr-popup-alert {
+        background-color: darkred;
+        color: white;
+    }
+</style>
+
+<h1>Detil Pelamar</h1>
+
+<div id="idAktivasiAkunTesOnline">
+    <div class="row" style="border-bottom:solid ; border-bottom-color:#000080;">
+        <div class="col-lg-8">
+            <div align="left">
+                <h3 class="biru" style="color:#000080; font:bold;">Aktivasi Akun Tes Online</h3>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div align="right">
+                <button type="button" class="btn btn-primar clbtnAktivasi" style="background-color:#000080; color:white;">Aktifkan</button>
+            </div>
+        </div>
+    </div>
+    <form class="form-inline">
+        <label for="AAname" style="color: #000080;">User Name &nbsp; : &nbsp </label>
+        <input type="text" name="Uname" class="" id="AAname" style="border:none;" placeholder=""><br/>
+        <label for="AAPwd" style="color: #000080;">Password &nbsp; &nbsp; : &nbsp </label>
+        <input type="text" name="Pwd" class="" id="AAPwd" style="border:none;" placeholder=""><br/>
+    </form>        
+</div>
+
+<div id="idTabelAktivasi" style="margin-top:8px;">
+    <div class="table-responsive">
+        <table class="table table-striped" id="tblTabelAktivasi">
+            <thead class="table-style">
+                <tr>
+                    <th>KODE PERIODE</th>
+                    <th>PERIODE</th>
+                    <th>TGL.TES</th>
+                    <th>TGL. BERAKHIR TES</th>
+                    <th>AKSES</th>
+                    <th>STATUS</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody class="table-style" id="tblAktivasiAkun"></tbody>
+        </table>
+    </div>
+</div>
+
+
+@*----------------------------------------- Tempat Modal Aktivasi Akun -----------------------------------------------------------*@
+
+<div class="modal fade" id="idMdlAA" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-edit" role="document">
+        <div class="modal-content">
+            @*modal-content-edit bgr-popup-sm*@
+            <div class="modal-header hdr-popup">
+                <h4 class="modal-title">
+                    Aktifkan Akun Tes
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; opacity:1;">x</button>
+                </h4>
+            </div>
+            <div class="modal-body" id="idBodyAA">
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+    $(document).ready(function () {
+
+        var vStrHtml = '';
+        $.ajax({
+            url: '/AktivasiAkunTesOnline/TampilTes',
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $.each(mdl, function (i, d) { //menjahit data ke dalam tabel
+                    if (d.is_delete == false) {
+                        vStrHtml = vStrHtml + '<tr>' +
+                                '<td>' + d.period_code + '</td>' +
+                                '<td>' + d.period + '</td>' +
+                                '<td>' + d.test_date + '</td>' +
+                                '<td>' + d.expired_test + '</td>' +
+                                '<td>' + d.user_access + '</td>' +
+                                '<td>' + d.status + '</td>' +
+                                 '<td class="dropdown">' +
+                                  '<button class="btn btn-primary button-more btn-sm dropdown-toggle" type="button" data-toggle="dropdown">More &nbsp;' +
+                                  '<span class="caret"></span>' +
+                                  '</button>' +
+                                  '<ul class="dropdown-menu">' +
+                                  '<li><a href="" class="control clUbah" data-toggle="collapse" getData="' + d.id + '">Ubah</a></li>' +
+                                  '<li><a href="" class="control clHapus" data-toggle="collapse" getDataFull=\'' + JSON.stringify(d) + '\'>Hapus</a></li>' +
+                                  '</ul>' +
+                               '</td>' +
+                               '</tr>';
+                    }
+                });
+
+                $('#idBodyTblAktivasi').append(vStrHtml); //memasukan data yg sudah di jahit ke dalam body
+
+            },
+            error: function (mdl) {
+                debugger;
+            }
+
+        });
+
+    $('.clbtnAktivasi').click(function () {
+        debugger;
+
+        $.ajax({
+            url: '/AktivasiAkunTesOnline/Aktifkan',
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $('#idBodyAA').empty();
+                $('#idBodyAA').append(mdl);
+                //$('#myModal').modal('hide');
+                $('#idMdlAA').modal('show');
+
+                debugger;
+            },
+            error: function (mdl) {
+                debugger;
+            }
+        });
+    });
+
+
+ });
+</script>
+

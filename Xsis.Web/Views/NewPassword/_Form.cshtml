@@ -1,0 +1,340 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Datepicker/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <style type="text/css">
+        .box {
+            width: 33%;
+            height: 200px;
+            background: white;
+        }
+
+        .font-style {
+            background-color: #000080;
+            color: white;
+            border-top-left-radius: 3%;
+            border-top-right-radius: 3%;
+            padding: 15px;
+        }
+
+        .cntr-hdr {
+            display: flex;
+            align-items: center;
+            align-content: center;
+            justify-content: space-between; /*button exit na jadi gak nempel lagi ke modal title*/
+        }
+
+        .background-lgn {
+            position: absolute;
+            margin: auto;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f0f5f5;
+            border-style: solid;
+            border-width: 1px;
+            text-align: center;
+        }
+
+        .cntr-content {
+            position: absolute;
+            margin: auto;
+            left: 30%;
+            top: 35%;
+            text-align: center;
+        }
+
+        .form-geser {
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+        .brdr-lgn {
+            border-color: #000080;
+            border-style: solid;
+            border-width: 2px;
+            border-radius: 3%;
+        }
+
+        .fnt {
+            font-weight: bold;
+            color: #000080;
+        }
+
+        .batas-bawah {
+            margin-bottom: 0px;
+        }
+
+        .background-layout {
+            background-color: #f0f5f5;
+        }
+    </style>
+    <style type="text/css">
+        [data-validation-message] {
+            display: none;
+            color: red;
+            font-weight: bold;
+        }
+
+            [data-validation-message].message-visible {
+                display: block;
+            }
+
+        .blueborder {
+            border-color: blue;
+        }
+
+            .blueborder.invalid {
+                border-color: red;
+            }
+    </style>
+</head>
+<body class="background-layout">
+    <form class="form-inline form-geser" id="idFrmForgotPasswordForm">
+        <table class="box cntr-content brdr-lgn" role="dialog" aria-labelledby="dialogTitle" aria-describedby="dialog1Desc">
+            <tr id="dialog1Desc">
+                <td>
+                    <p class="font-style batas-bawah" id="dialogTitle" align="left">Form Lupa Password</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="hidden" name="id" id="idget" />
+                    <input type="password" name="abpwd" class="form-control" data-validate="required" id="idInpNewPassword" placeholder="New Password">
+                    <small role="alert" aria-hidden="true" data-validation-message="required">Password harus diisi.</small>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="password" class="form-control" data-validate="required password minSandi maxSandi sandiValid" id="idInpRetypeNewPassword" placeholder="Re-Type New Password">
+                    <small role="alert" aria-hidden="true" data-validation-message="required">Password harus diisi.</small>
+                    <small role="alert" aria-hidden="true" data-validation-message="password">Password tidak sama, pastikan anda memasukkan password yang sama.</small>
+                    <small role="alert" aria-hidden="true" data-validation-message="minSandi">Password minimal 8 karakter.</small>
+                    <small role="alert" aria-hidden="true" data-validation-message="maxSandi">Password maksimal 16 karakter.</small>
+                    <small role="alert" aria-hidden="true" data-validation-message="sandiValid">Password terdiri dari huruf besar, kecil, angka, dan simbol.</small>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" class="btn" id="idBtnForgotPasswordForm" style="background-color: #000080; color: white;">&nbsp Submit &nbsp</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="fnt" style=""> 2020 - Xsis Mitra Utama</p>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        //$.ajax({
+        //    url: '/ForgotPasswordForm/Tampil',
+        //    method: 'Get',
+        //    success: function (mdl) {
+        //        debugger;
+        //    },
+        //    error: function (mdl) {
+        //        debugger;
+        //    }
+        //});
+        var idcoba = parseInt(3);
+        debugger;
+        $.ajax({
+            url: '/ForgotPasswordForm/AmbilData',
+            data: { ID : idcoba },
+            method: 'Post',
+            success: function (fpf) {
+                debugger;
+                $('#idget').val(fpf.id);
+            },
+            error: function (fpf) {
+                debugger;
+            }
+        });
+        debugger;
+    });
+    //$('#idBtnForgotPasswordForm').click(function () {
+    function editforgotpasswordform() {
+        debugger;
+        var vDataBarang = $('#idFrmForgotPasswordForm').serialize();
+        $.ajax({
+            url: '/ForgotPasswordForm/EditSimpan',
+            data: vDataBarang,
+            method: 'Post',
+            success: function (mdl) {
+                if (mdl.EditSimpan == "Berhasil") {
+                    debugger;
+                    alert("Berhasil ubah password, silakan coba login kembali");
+                    //
+                    //
+                    //$('#idMdlEditOrganisasi').close;
+                    //location.reload();
+                    debugger;
+                    var url = "@Url.Action("Index","Login")"
+                    window.location.href = url;
+                    debugger;
+                }
+                else {
+                    debugger;
+                    alert("Password gagal diganti");
+                }
+            },
+            error: function (mdl) {
+                debugger;
+            }
+        });
+    }
+</script>
+
+<script>
+// (1) Defining our validator-functions
+//     for later use. They return
+    //     "true", if the validation passes.
+    var b = @Html.Raw(@"/^[^@\s]+@[^@\.\s]+(\.[^@\.\s]+)+$/");
+    @*var passw = @Html.Raw(@"/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/"); //tanpa range minimal dan maksimal *@
+    var passw = @Html.Raw(@"/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/"); //dengan range minimal dan maksimal
+const validators = {
+  // Checks the field for emptiness.
+    required: element => element.value.length > 0,
+    password: element=>element.value == document.getElementById("idInpNewPassword").value,
+    minSandi: element => element.value.length > 8,
+    maxSandi: element => element.value.length <= 16,
+    sandiValid: element => element.value.match(passw),
+  // Checks if there are no numbers
+  // in the field.
+  noNumbers: element => !element.value.match(/[0-9]/g),
+  // Checks if the value is shorter
+  // than 10 characters.
+  maxLength: element => element.value.length <= 10,
+  // Checks if the checkbox is checked.
+  mustBeChecked: element => element.checked
+};
+// (2) Check the contents of an input,
+//     get all validators, and mark
+//     the field in case of invalidity.
+function validateElement(element) {
+  resetValidation(element);
+  // Store all validators from the
+  // data-validate-attribute into
+  // an array.
+  const rules = element.dataset.validate.split(" ");
+  // For every validator on the
+  // field...
+  rules.forEach(rule => {
+    // ...find the corresponding
+    // validator-function from our
+    // object from #1 and call it
+    // with the element as parameter.
+    if (validators[rule](element)) {
+      // If the function returns true, all is fine.
+        debugger;
+        return;
+    } else {
+      // If it returns false, the
+      // validation failed.
+      // In that case, the
+      // markElementInvalid-function
+      // takes care of showing the
+      // error-message.
+      markElementInvalid(element, rule);
+    }
+  });
+}
+// (3) Adds classes to an element,
+//     so it appears invalid. Also
+//     it picks the correct feedback-
+//     message and sets it visible.
+function markElementInvalid(element, validatorName) {
+  element.classList.add("invalid");
+  element.setAttribute("aria-invalid", true);
+  const feedbackMessage = element.parentNode.querySelector(
+    `[data-validation-message=${validatorName}]`
+  );
+  feedbackMessage.classList.add("message-visible");
+  feedbackMessage.setAttribute("aria-hidden", false);
+}
+// (4) Removes all traces of
+//     validation from an element,
+//     like the error-messages and
+//     the styling.
+//     (Pretty much the opposite of #3)
+function resetValidation(element) {
+  element.classList.remove("invalid");
+  element.setAttribute("aria-invalid", false);
+  element.parentNode
+    .querySelectorAll("[data-validation-message]")
+    .forEach(e => {
+      e.classList.remove("message-visible");
+      e.setAttribute("aria-hidden", true);
+    });
+}
+// (5) Store the form and its
+//     inputs in variables.
+const form = document.getElementById("idFrmForgotPasswordForm");
+const formElements = Array.from(form.elements);
+// (6) Every input gets an
+//     event-listener attached.
+formElements.forEach(formElement => {
+  // Do nothing if the element has
+  // no data-validate-attribute.
+  if (!formElement.dataset) return;
+  if (!formElement.dataset.validate) return;
+  // Attach the blur-event-listener
+  // to the element.
+  formElement.addEventListener("", () => {
+    // This means, validateElement will
+    // be called everytime the element
+    // loses focus.
+    validateElement(formElement);
+  });
+});
+// (7) We're doing what we did at #3,
+//     only on form-submit, and for
+//     every field.
+form.addEventListener("submit", event => {
+  // Let's assume, everything is fine.
+  let formIsValid = true;
+  form.classList.remove("invalid");
+  // We'll check every field in the form.
+  // (same as #3)
+  formElements.forEach(formElement => {
+    if (!formElement.dataset) return;
+    if (!formElement.dataset.validate) return;
+    validateElement(formElement);
+  });
+  // If there are any "invalid"-classes
+  // after we checked all fields, the form
+  // is invalid...
+  formIsValid = form.querySelectorAll(".invalid").length === 0;
+  // ...and will not be submitted.
+  if (formIsValid === false) {
+    form.classList.add("invalid");
+    event.preventDefault();
+  } else {
+      debugger;
+      editforgotpasswordform();
+  }
+});
+</script>

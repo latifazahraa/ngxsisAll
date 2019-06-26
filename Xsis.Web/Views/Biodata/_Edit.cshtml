@@ -1,0 +1,628 @@
+﻿<style type="text/css">
+    [data-validation-message] {
+        display: none;
+        color: red;
+        font-weight: bold;
+    }
+
+        [data-validation-message].message-visible {
+            display: block;
+        }
+
+    .blueborder {
+        border-color: blue;
+    }
+
+        .blueborder.invalid {
+            border-color: red;
+        }
+</style>
+
+<form action="" method="post" id="idFrmEditBiodata">
+    <table class="table" style="font-size:12px;">
+        <tr>
+            <td colspan="12">
+                <input type="hidden" name="id" id="idget" />
+                <label>Nama Lengkap *</label>
+                <input type="text" name="fullname" class="form-control blueborder" data-validate="required" id="idFullname">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Nama Lengkap Tidak Boleh Kosong.
+                </small>
+                </td>
+            <td colspan="12">
+                <label>Nama Panggilan *</label>
+                <input type="text" name="nick_name" class="form-control blueborder" data-validate="required" id="idNickName">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Nama Panggilan Tidak Boleh Kosong.
+                </small>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <label>Tempat Lahir *</label>
+                <input type="text" name="pob" class="form-control blueborder" data-validate="required" id="idPob">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Tempat Lahir Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="6">
+                <label>Tgl. Lahir (yyyy-mm-yy) *</label>
+                <input type="text" name="dob" class="form-control blueborder" data-validate="required" id="idDob">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Tanggal Lahir Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="6">
+                <label>Jenis Kelamin *</label>
+                <select class="form-control blueborder" name="gender" data-validate="required" id="idGender">
+                    <option value="">-Pilih-</option>
+                    <option value=false>Perempuan</option>
+                    <option value=true>Laki-laki</option>
+                </select>
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Jenis Kelamin Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="6">
+                <label>Agama *</label>
+                <select class="form-control blueborder" name="religion_id" data-validate="required" id="idReligion">
+                    <option value="">-Pilih-</option>
+                </select>
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Agama Tidak Boleh Kosong.
+                </small>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <label>Tinggi (cm) *</label>
+                <input type="text" name="high" class="form-control blueborder" data-validate="required" id="idHigh">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Tinggi Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="6">
+                <label>Berat (kg) *</label>
+                <input type="text" name="weight" class="form-control blueborder" data-validate="required" id="idWeight">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Berat Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="6">
+                <label>Kewarganegaraan *</label>
+                <input type="text" name="nationality" class="form-control blueborder" data-validate="required" id="idNationality">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Kewarganegaraan Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="6">
+                <label>Suku Bangsa</label>
+                <input type="text" name="ethnic" class="form-control blueborder" id="idEthnic">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="12">
+                <label>Kegemaran / Hobi</label>
+                <input type="text" name="hobby" class="form-control blueborder" id="idHobby">
+            </td>
+            <td colspan="6">
+                <label>Jenis Identitas *</label>
+                <select class="form-control blueborder" name="identity_type_id" data-validate="required" id="idIdentityType">
+                    <option value="">-Pilih-</option>
+                </select>
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Jenis Identitas Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="6">
+                <label>Nomor Identitas</label>
+                <input type="text" name="identity_no" class="form-control blueborder" id="idIdentityNo">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <label>Email *</label>
+                <input type="text" name="email" class="form-control blueborder" data-validate="required" id="idEmail">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Email Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="6">
+                <label>No. HP</label>
+                <input type="text" name="phone_number1" class="form-control blueborder" id="idPhoneNumber1">
+            </td>
+            <td colspan="6">
+                <label>No. HP Alternatif</label>
+                <input type="text" name="phone_number2" class="form-control blueborder" id="idPhoneNumber2">
+            </td>
+            <td colspan="6">
+                <label> No. Tlp (Orang Tua) *</label>
+                <input type="text" name="parent_phone_number" class="form-control blueborder" data-validate="required" id="idParentPhoneNumber">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    No. Tlp (Orang Tua) Tidak Boleh Kosong.
+                </small>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <label>Anak Ke *</label>
+                <input type="text" name="child_sequence" class="form-control blueborder" data-validate="required" id="idChildSequence">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Anak ke Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="6">
+                <label>Dari Berapa Bersaudara *</label>
+                <input type="text" name="how_many_brothers" class="form-control blueborder" data-validate="required" id="idHowManyBrothers">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Dari Berapa Bersaudara Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="6">
+                <label>Status Pernikahan *</label>
+                <select class="form-control blueborder" name="marital_status_id" data-validate="required" id="idMaritalStatus">
+                    <option value="">-Pilih-</option>
+                </select>
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Status Pernikahan Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="6">
+                <label>Tahun Pernikahan</label>
+                <select class="form-control blueborder" name="mariage_year" id="idMariageYear">
+                    <option>-Pilih-</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="12">
+                <label style="font-size:15px;"><u><b>Alamat Sesuai Kartu Identitas</b></u></label> 
+            </td>
+            <td colspan="12">
+                <label style="font-size:15px;"><u><b>Alamat Sesuai Tempat Tinggal Saat Ini</b></u></label> 
+            </td>
+        </tr>
+        <tr>
+            <td colspan="12">
+                <label>Alamat *</label>
+                <input type="text" name="address1" class="form-control blueborder" data-validate="required" id="idAddress1">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Alamat Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="12">
+                <label>Alamat *</label>
+                <input type="text" name="address2" class="form-control blueborder" data-validate="required" id="idAddress2">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Alamat Tidak Boleh Kosong.
+                </small>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <label>Kode Pos</label>
+                <input type="text" name="postalcode1" class="form-control blueborder" id="idPostalCode1">
+            </td>
+            <td colspan="3">
+                <label>RT *</label>
+                <input type="text" name="rw1" class="form-control blueborder" data-validate="required" id="idRt1">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    RT Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="3">
+                <label>RW *</label>
+                <input type="text" name="rw1" class="form-control blueborder" data-validate="required" id="idRw1">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    RT Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="6">
+                <label>Kode Pos</label>
+                <input type="text" name="postalcode2" class="form-control blueborder" id="idPostalCode2">
+            </td>
+            <td colspan="3">
+                <label>RT *</label>
+                <input type="text" name="rw2" class="form-control blueborder" data-validate="required" id="idRt2">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    RT Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="3">
+                <label>RW *</label>
+                <input type="text" name="rw2" class="form-control blueborder" data-validate="required" id="idRw2">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    RW Tidak Boleh Kosong.
+                </small>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <label>Desa/Kelurahan *</label>
+                <input type="text" name="kelurahan1" class="form-control blueborder" data-validate="required" id="idKelurahan1">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Desa/Kelurahan Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="3">
+                <label>Kecamatan *</label>
+                <input type="text" name="kecamatan1" class="form-control blueborder" data-validate="required" id="idKecamatan1">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Kecamatan Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="3">
+                <label>Kota *</label>
+                <input type="text" name="rw1" class="form-control blueborder" data-validate="required" id="idRegion1">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Kota Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="6">
+                <label>Desa/Kelurahan *</label>
+                <input type="text" name="kelurahan2" class="form-control blueborder" data-validate="required" id="idKelurahan2">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Desa/Keluarahan Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="3">
+                <label>Kecamatan *</label>
+                <input type="text" name="kecamatan2" class="form-control blueborder" data-validate="required" id="idKecamatan2">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Kecamatan Tidak Boleh Kosong.
+                </small>
+            </td>
+            <td colspan="3">
+                <label>Kota *</label>
+                <input type="text" name="rw2" class="form-control blueborder" data-validate="required" id="idRegion2">
+                <small role="alert"
+                       aria-hidden="true"
+                       data-validation-message="required">
+                    Kota Tidak Boleh Kosong.
+                </small>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="24" align="right">
+                <button type="button" class="btn orenwoy" id="idBtnCancelBiodata">Cancel</button>
+                <button type="submit" class="btn biruwoy" id="idBtnUpdateBiodata">Submit</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<script>
+
+    $(document).ready(function () {
+        debugger;
+        var d = new Date();
+        var vOption = "";
+        for (var i = d.getFullYear() ; i >= 1970; i--) {
+            vOption = vOption +
+            '<option>' + i + '</option>'
+        }
+        $('#idMariageYear').append(vOption);
+
+
+        var vDataGender =
+            { false: 'Perempuan', true: 'Laki-laki' };
+
+        var vSelectReligion = '';
+        debugger;
+        $.ajax({
+            url: '/Biodata/SelectReligion',
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+
+                $.each(mdl, function (i, d) { //menjahit data ke dalam tabel
+                    vSelectReligion = vSelectReligion +
+                        '<option value="' + d.id + '">' +
+                            d.name +
+                            '</option>';
+                });
+                $('#idReligion').append(vSelectReligion); //memasukan data yg sudah di jahit ke dalam body
+            }
+        });
+
+        var vSelectIdentityType = '';
+        debugger;
+        $.ajax({
+            url: '/Biodata/SelectIdentityType',
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $.each(mdl, function (i, d) { //menjahit data ke dalam tabel
+                    vSelectIdentityType = vSelectIdentityType +
+                        '<option value="' + d.id + '">' +
+                            d.name +
+                            '</option>';
+                });
+                $('#idIdentityType').append(vSelectIdentityType); //memasukan data yg sudah di jahit ke dalam body
+            }
+        });
+
+        var vSelectMaritalStatus = '';
+        $.ajax({
+            url: '/Biodata/SelectMaritalStatus',
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $.each(mdl, function (i, d) { //menjahit data ke dalam tabel
+                    vSelectMaritalStatus = vSelectMaritalStatus +
+                        '<option value="' + d.id + '">' +
+                            d.name +
+                            '</option>';
+                });
+                $('#idMaritalStatus').append(vSelectMaritalStatus); //memasukan data yg sudah di jahit ke dalam body
+            }
+        });
+
+        $.ajax({
+            url: '/Biodata/AmbilData',
+            data: { ID: $('#idget').val() },
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $('#idFullname').val(mdl.fullname);
+                $('#idNickName').val(mdl.nick_name);
+                $('#idPob').val(mdl.pob);
+                $('#idDob').val(mdl.dob);
+                $('#idGender').val(vDataGender[mdl.gender]).selected;
+                $('#idReligion').val(mdl.religion_id).selected;
+                $('#idHigh').val(mdl.high);
+                $('#idWeight').val(mdl.weight);
+                $('#idNationality').val(mdl.nationality);
+                $('#idEthnic').val(mdl.ethnic);
+                $('#idHobby').val(mdl.hobby);
+                $('#idIdentityType').val(mdl.identity_type_id).selected;
+                $('#idIdentityNo').val(mdl.identity_no);
+                $('#idEmail').val(mdl.email);
+                $('#idPhoneNumber1').val(mdl.phone_number1);
+                $('#idPhoneNumber2').val(mdl.phone_number2);
+                $('#idParentPhoneNumber').val(mdl.parent_phone_number);
+                $('#idChildSequence').val(mdl.child_sequence);
+                $('#idHowManyBrothers').val(mdl.how_many_brothers);
+                $('#idMaritalStatus').val(mdl.marital_status_id).selected;
+                $('#idMariageYear').val(mdl.mariage_year);
+                $('#idAddress1').val(mdl.Address1);
+                $('#idAddress2').val(mdl.Address2);
+                $('#idPostalCode1').val(mdl.PostalCode1);
+                $('#idPostalCode2').val(mdl.PostalCode2);
+                $('#idRt1').val(mdl.Rt1);
+                $('#idRw1').val(mdl.Rw1);
+                $('#idRt2').val(mdl.Rt1);
+                $('#idRw2').val(mdl.Rw2);
+                $('#idKelurahan1').val(mdl.Kelurahan1);
+                $('#idKecamatan1').val(mdl.Kecamatan1);
+                $('#idRegion1').val(mdl.Region1);
+                $('#idKelurahan2').val(mdl.Kelurahan2);
+                $('#idKecamatan2').val(mdl.Kecamatan2);
+                $('#idRegion2').val(mdl.Region2);
+            }
+           
+        });
+        debugger;
+        $('#idBtnCancelBiodata').click(function () {
+            $('#idMdlEditBiodata').close;
+            location.reload();
+        });
+    });
+
+    function simpanbiodata() {
+        $('#idBtnUpdateBiodata').click(function () {
+            debugger;
+            var vDatabiodata = $('#idFrmEditBiodata').serialize();
+            $.ajax({
+                url: '/Biodata/EditSimpan',
+                data: vDatabiodata,
+                method: 'Post',
+                success: function (mdl) {
+                    if (mdl.EditSimpan == "Berhasil") {
+                        debugger;
+                        alert("Data berhasil diEdit");
+                        $('#idMdlEditBiodata').close;
+                        location.reload();
+
+                    }
+                    else {
+                        debugger;
+                        alert("Data gagal diEdit");
+                    }
+                }
+            });
+        });
+    }
+
+</script>
+
+<script>
+// (1) Defining our validator-functions
+//     for later use. They return
+//     "true", if the validation passes.
+const validators = {
+  // Checks the field for emptiness.
+    required: element => element.value.length > 0,
+
+  // Checks if there are no numbers
+  // in the field.
+  noNumbers: element => !element.value.match(/[0-9]/g),
+
+  // Checks if the value is shorter
+  // than 10 characters.
+  maxLength: element => element.value.length <= 10,
+
+  // Checks if the checkbox is checked.
+  mustBeChecked: element => element.checked
+};
+
+// (2) Check the contents of an input,
+//     get all validators, and mark
+//     the field in case of invalidity.
+function validateElement(element) {
+  resetValidation(element);
+
+  // Store all validators from the
+  // data-validate-attribute into
+  // an array.
+  const rules = element.dataset.validate.split(" ");
+
+  // For every validator on the
+  // field...
+  rules.forEach(rule => {
+    // ...find the corresponding
+    // validator-function from our
+    // object from #1 and call it
+    // with the element as parameter.
+    if (validators[rule](element)) {
+      // If the function returns true, all is fine.
+        debugger;
+        return;
+    } else {
+      // If it returns false, the
+      // validation failed.
+      // In that case, the
+      // markElementInvalid-function
+      // takes care of showing the
+      // error-message.
+      markElementInvalid(element, rule);
+    }
+  });
+}
+
+// (3) Adds classes to an element,
+//     so it appears invalid. Also
+//     it picks the correct feedback-
+//     message and sets it visible.
+function markElementInvalid(element, validatorName) {
+  element.classList.add("invalid");
+  element.setAttribute("aria-invalid", true);
+  const feedbackMessage = element.parentNode.querySelector(
+    `[data-validation-message=${validatorName}]`
+  );
+  feedbackMessage.classList.add("message-visible");
+  feedbackMessage.setAttribute("aria-hidden", false);
+}
+
+// (4) Removes all traces of
+//     validation from an element,
+//     like the error-messages and
+//     the styling.
+//     (Pretty much the opposite of #3)
+function resetValidation(element) {
+  element.classList.remove("invalid");
+  element.setAttribute("aria-invalid", false);
+  element.parentNode
+    .querySelectorAll("[data-validation-message]")
+    .forEach(e => {
+      e.classList.remove("message-visible");
+      e.setAttribute("aria-hidden", true);
+    });
+}
+
+// (5) Store the form and its
+//     inputs in variables.
+const form = document.getElementById("idFrmEditBiodata");
+const formElements = Array.from(form.elements);
+
+// (6) Every input gets an
+//     event-listener attached.
+formElements.forEach(formElement => {
+  // Do nothing if the element has
+  // no data-validate-attribute.
+  if (!formElement.dataset) return;
+  if (!formElement.dataset.validate) return;
+
+  // Attach the blur-event-listener
+  // to the element.
+  formElement.addEventListener("", () => {
+    // This means, validateElement will
+    // be called everytime the element
+    // loses focus.
+    validateElement(formElement);
+  });
+});
+
+// (7) We're doing what we did at #3,
+//     only on form-submit, and for
+//     every field.
+form.addEventListener("submit", event => {
+  // Let's assume, everything is fine.
+  let formIsValid = true;
+  form.classList.remove("invalid");
+
+  // We'll check every field in the form.
+  // (same as #3)
+  formElements.forEach(formElement => {
+    if (!formElement.dataset) return;
+    if (!formElement.dataset.validate) return;
+    validateElement(formElement);
+  });
+
+  // If there are any "invalid"-classes
+  // after we checked all fields, the form
+  // is invalid...
+  formIsValid = form.querySelectorAll(".invalid").length === 0;
+
+  // ...and will not be submitted.
+  if (formIsValid === false) {
+    form.classList.add("invalid");
+    event.preventDefault();
+  } else {
+      debugger;
+      simpanbiodata();
+  }
+});
+</script>

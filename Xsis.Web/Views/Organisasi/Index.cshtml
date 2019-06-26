@@ -1,0 +1,333 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<style>
+.btn-link {
+    font-weight: 400;
+    color: #000000;
+    border-radius: 0;
+}
+.btn-link:focus, .btn-link:hover {
+    color: #000080;
+    text-decoration: underline;
+    background-color: transparent;
+}
+
+</style>
+
+<style>
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.biru{
+    color:#000080;
+    font-weight:bold;
+}
+.birutext{
+    color:#000080;
+}
+.birubg{
+    background-color:#000080;
+    color:white;
+}
+.merahbg{
+    background-color:#A92E13;
+    color:white;
+}
+.biruwoy{
+    background-color:#000080;
+    color:white;
+}
+.biruwoy:hover{
+    background-color:blue;
+}
+.orenwoy{
+    background-color:orangered;
+    color:white;
+}
+.orenwoy:hover{
+    background-color:red;
+}
+.merahwoy{
+    background-color:#A92E13;
+    color:white;
+}
+.merahwoy:hover{
+    background-color:red;
+    color:white;
+}
+.table{
+    color:#000080;
+}
+.lebarwoy{
+    position:center;
+    width:800px;
+}
+.tengahwoy{
+    padding-right:800px;
+}
+.tengahpls{
+    background-color:none;
+    padding-top:150px;
+    width:500px;
+}
+.lebarpls{
+    margin-left:50px;
+    width:500px;
+    height:400px;
+}
+.merahtext{
+    color:#A92E13;
+}
+</style>
+
+<div class="table-responsive" style="height:600px">
+    <table class="table table-striped">
+        <thead>
+            <tr style="border-bottom: 3px solid #000080">
+                <td colspan="4">
+                    <h4 class="biru">Organisasi<button type="button" class="btn btn-link" id="idBtnCreateOrganisasi"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button></h4>
+                </td>
+            </tr>
+            <tr class="biru" style="border-bottom: 3px solid #000080">
+                <td>NAMA</td>
+                <td>JABATAN</td>
+                <td>PERIODE</td>
+                <td>#</td>
+            </tr>
+        </thead>
+        <tbody id="idTblBodyOrganisasi"></tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="idMdlCreateOrganisasi" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog tengahpls" role="document">
+        <div class="modal-content lebarpls">
+            <div class="modal-header birubg">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title" style="color: white; opacity:1;">
+                    Tambah Organisasi 
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; opacity:1;">x</button>
+                </h4>
+            </div>
+            <div class="modal-body" id="idBodyCreateOrganisasi" style="margin-left: 10px;">
+
+
+
+                @*<p>One fine body&hellip;</p>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="idMdlEditOrganisasi" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog tengahpls" role="document">
+        <div class="modal-content lebarpls">
+            <div class="modal-header birubg">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title" style="color: white; opacity:1;">
+                    Ubah Organisasi
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; opacity:1;">x</button>
+                </h4>
+            </div>
+            <div class="modal-body" id="idBodyEditOrganisasi" style="margin-left: 10px;">
+
+
+
+                @*<p>One fine body&hellip;</p>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="idMdlHapusOrganisasi" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog tengahpls" role="document">
+        <div class="modal-content">
+            <div class="modal-header merahbg">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title">Hapus Organisasi ?</h4>
+            </div>
+            <div class="modal-body" id="idBodyHapusOrganisasi">
+
+                @*<p>One fine body&hellip;</p>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script>
+    var vDataTahun =
+        { 1: '2011', 2: '2012', 3: '2013', 4: '2014', 5: '2015' };
+    $(document).ready(function () {
+        var vStrHtml = '';
+
+        $.ajax({
+            url: '/Organisasi/Tampil',
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $.each(mdl, function (i, d) {
+                    debugger;
+                    if (d.entry_year==d.exit_year) {
+                        d.exit_year = '';
+                    }
+                    else {
+                        d.exit_year = ' s.d ' + d.exit_year;
+                    }
+                    vStrHtml = vStrHtml + '<tr>' +
+                        '<td style="border-top: 1px solid #000080">' + d.name + '</td>' +
+                        '<td style="border-top: 1px solid #000080">' + d.position + '</td>' +
+                        '<td style="border-top: 1px solid #000080">' + d.entry_year + d.exit_year + '</td>' +
+                        '<td class="dropdown" style="border-top: 1px solid #000080">' +
+                        '<button class="btn birubg dropdown-toggle" type="button" data-toggle="dropdown">More &nbsp;' +
+                        '<span class="caret"></span>' +
+                        '</button>' +
+                        '<ul class="dropdown-menu">' +
+                        '<li><a class="UbahOrganisasi" dataID="' + d.id + '" href="#">Ubah</a></li>' +
+                        '<li><a class="HapusOrganisasiConfirm" dataID="' + d.id + '" href="#">Hapus</a></li>' +
+                        '</ul>' +
+                        '</td>' +
+                        '</tr>';
+                });
+
+                $('#idTblBodyOrganisasi').append(vStrHtml);
+
+
+                $('.UbahOrganisasi').click(function () {
+                    var vDataID = parseInt($(this).attr('dataID'));
+                    debugger;
+
+                    $.ajax({
+                        url: '/Organisasi/Edit',
+                        data: { ID: vDataID },
+                        method: 'Post',
+                        success: function (mdl) {
+                            $('#idBodyEditOrganisasi').empty();
+                            $('#idBodyEditOrganisasi').append(mdl);
+                            $('#idget').val(vDataID);
+                            $('#idMdlEditOrganisasi').modal('show');
+                            debugger;
+                        },
+                        error: function (mdl) {
+                            debugger;
+                        }
+                    });
+                });
+
+
+                $('.HapusOrganisasiConfirm').click(function () {
+                    var vDataID = parseInt($(this).attr('dataID'));
+                    debugger;
+                    $.ajax({
+                        url: '/Organisasi/DeleteConfirm',
+                        data: { ID: vDataID },
+                        method: 'Post',
+                        success: function (mdl) {
+                            $('#idBodyHapusOrganisasi').empty();
+                            $('#idBodyHapusOrganisasi').append(mdl);
+                            $('#idget').val(vDataID);
+                            $('#idMdlHapusOrganisasi').modal('show');
+                            debugger;
+                        },
+                        error: function (mdl) {
+                            debugger;
+                        }
+                    });
+                });
+
+
+                    
+                //$('.HapusOrganisasi').click(function () {
+                //    var vDataID = parseInt($(this).attr('dataID'));
+                //    debugger;
+                //    var r = confirm('anda yakin ingin menghapus data organisasi?');
+                //    if (r == true) {
+                //        $.ajax({
+                //            url: '/Organisasi/Delete',
+                //            data: { ID: vDataID },
+                //            method: 'Post',
+                //            success: function (mdl) {
+                //                alert('Berhasil menghapus data organisasi');
+                //                location.reload();
+                //                debugger;
+                //            },
+                //            error: function (mdl) {
+                //                debugger;
+                //            }
+                //        });
+                //    }
+                //});
+
+            },
+            error: function (mdl) {
+                debugger;
+            }
+        });
+
+        $('#idBtnCreateOrganisasi').click(function () {
+            $.ajax({
+                url: '/Organisasi/Create',
+                method: 'Get',
+                success: function (mdl) {
+                    debugger;
+                    $('#idBodyCreateOrganisasi').empty();
+                    $('#idBodyCreateOrganisasi').append(mdl);
+
+                    $('#idMdlCreateOrganisasi').modal('show');
+                    debugger;
+                },
+                error: function (mdl) {
+                    debugger;
+                }
+            });
+        });
+
+        //$(document).on("click", ".HapusOrganisasi", function () {
+        //    var vDataID = parseInt($(this).attr('dataID'));
+        //    debugger;
+        //    var r = confirm("Anda Yakin Ingin Menghapus Data ??");
+        //    if (r == true) {
+        //        $.ajax({
+        //            url: '/Organisasi/Delete',
+        //            data: { ID: vDataID },
+        //            method: 'Post',
+        //            success: function (mdl) {
+        //                alert('Berhasil Menghapus Data');
+        //                location.reload();
+        //                debugger;
+        //            },
+        //            error: function (mdl) {
+        //                debugger;
+        //            }
+        //        });
+        //    }
+        //});
+
+    });
+
+</script>

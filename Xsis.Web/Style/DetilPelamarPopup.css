@@ -1,0 +1,27 @@
+﻿.bgr-popup 
+{
+    width: 1150px;
+    height: 680px;
+    border-color:#000080;
+    border-style: solid;
+    border-width: 1px;
+    border-color:#000080;
+}
+.cntr-popup
+{
+    margin-left:12%;
+}
+.hdr-popup
+{
+    height: 45px;
+    background-color:#000080;
+    color:white;
+    opacity:100;
+}
+.cntr-hdr
+{
+    display:flex;
+    align-items: center;
+    align-content:center;
+    justify-content: space-between; /*button exit na jadi gak nempel lagi ke modal title*/
+}

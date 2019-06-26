@@ -1,0 +1,189 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="table-responsive" style="height:600px;">
+    <table class="table table-striped">
+        <thead>
+            <tr style="border-bottom:3px solid blue;">
+                <td colspan="7">
+                    <h4 class="biru">Keluarga<button type="button" class="btn btn-link" id="idBtnCreateKeluarga"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button></h4>
+                </td>
+            </tr>
+            <tr class="biru" style="border-bottom:3px solid blue;">
+                <td>HUBUNGAN</td>
+                <td>NAMA</td>
+                <td>JK</td>
+                <td>TGL. LAHIR</td>
+                <td>PENDIDIKAN</td>
+                <td>PEKERJAAN</td>
+                <td>#</td>
+            </tr>
+        </thead>
+        <tbody id="idTblBodyKeluarga"></tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="idMdlCreateKeluarga" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document" style="width:800px;">
+        <div class="modal-content">
+            <div class="modal-header  birubg">
+               <h4 class="modal-title">Tambah Keluarga <span style="padding-left:560px;"></span> <button class="ClBtnCloseKeluarga" style="background-color:transparent; color:white; border:none; overflow:hidden;"><span class="glyphicon glyphicon-remove"></span></button></h4>
+            </div>
+            <div class="modal-body" id="idBodyCreateKeluarga">
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="idMdlEditKeluarga" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document" style="width:800px;">
+        <div class="modal-content">
+            <div class="modal-header birubg">
+               <h4 class="modal-title">Ubah Keluarga <span style="padding-left:580px;"></span> <button class="ClBtnCloseKeluarga" style="background-color:transparent; color:white; border:none; overflow:hidden;"><span class="glyphicon glyphicon-remove"></span></button></h4>
+            </div>
+            <div class="modal-body" id="idBodyEditKeluarga">
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="idMdlHapusKeluarga" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog tengahpls" role="document">
+        <div class="modal-content lebarpls">
+            <div class="modal-header merahbg">
+                <h4 class="modal-title">Hapus Keluarga ?</h4>
+            </div>
+            <div class="modal-body" id="idBodyHapusKeluarga">
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+
+    $(document).ready(function () {
+
+        var vStrHtml = '';
+
+        $.ajax({
+            url: '/Keluarga/Tampil',
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $.each(mdl, function (i, d) { //menjahit data ke dalam tabel
+                    debugger;
+
+                    if (d.gender == true) {
+                        debugger;
+                        vDataGender = 'Laki-laki';
+                    }
+                    else{
+                        debugger;
+                        vDataGender = 'Perempuan';
+                    }
+                    
+                    if (d.dob == null) {
+                        debugger;
+                        vDataDob = '-';
+                    }
+                    else {
+                        debugger;
+                        a = new Date(parseInt(d.dob.substr(6)));
+                        vtanggal = (a.getDate() < 10 ? '0' : '') + a.getDate();
+                        vbulan = a.getMonth()+1;
+                        var vMonthList = { 1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'Mei', 6: 'Jun', 7: 'Jul', 8: 'Agu', 9: 'Sep', 10: 'Okt', 11: 'Nov', 12: 'Des' };
+                        vtahun = a.getFullYear();
+                        vDataDob = vtanggal + "-" + vMonthList[vbulan] + "-" + vtahun;
+                    }
+
+                    vStrHtml = vStrHtml + ' <tr class="birutext">' +
+                        '<td style="border-top:2px solid blue;">' + d.family_relation_name + '</td>' +
+                        '<td style="border-top:2px solid blue;">' + d.name + '</td>' +
+                        '<td style="border-top:2px solid blue;">' + vDataGender + '</td>' +
+                        '<td style="border-top:2px solid blue;">' + vDataDob + '</td>' +
+                        '<td style="border-top:2px solid blue;">' + d.educational_level_name + '</td>' +
+                        '<td style="border-top:2px solid blue;">' + d.job + '</td>' +
+                        '<td style="border-top:2px solid blue;" class="dropdown">' +
+                        '<button class="btn birubg dropdown-toggle" type="button" data-toggle="dropdown">More &nbsp;' +
+                        '<span class="caret"></span>' +
+                        '</button>' +
+                        '<ul class="dropdown-menu">' +
+                        '<li><a class="UbahKeluarga" dataID="' + d.id + '" href="#">Ubah</a></li>' +
+                        '<li><a class="HapusKeluargaCfr" dataID="' + d.id + '" href="#">Hapus</a></li>' +
+                        '</ul>' +
+                        '</td>' +
+                        '</tr>';
+                });
+
+                $('#idTblBodyKeluarga').append(vStrHtml); //memasukan data yg sudah di jahit ke dalam body
+
+                $('.UbahKeluarga').click(function () {
+                    var vDataID = parseInt($(this).attr('dataID'));
+                    debugger;
+
+                    $.ajax({
+                        url: '/Keluarga/Edit',
+                        data: { ID: vDataID },
+                        method: 'Post',
+                        success: function (mdl) {
+                            $('#idBodyEditKeluarga').empty();
+                            $('#idBodyEditKeluarga').append(mdl);
+                            $('#idget').val(vDataID); //memasukan nilai vDataID ke dalam idget pada partial view _Edit
+                            $('#idMdlEditKeluarga').modal('show');
+                            debugger;
+                        },
+                        error: function (mdl) {
+                            debugger;
+                        }
+                    });
+
+                });
+
+                $('.HapusKeluargaCfr').click(function () {
+                    var vDataID = parseInt($(this).attr('dataID'));
+                    debugger;
+                    $.ajax({
+                        url: '/Keluarga/DeleteCfr',
+                        data: { ID: vDataID },
+                        method: 'Post',
+                        success: function (mdl) {
+                            $('#idBodyHapusKeluarga').empty();
+                            $('#idBodyHapusKeluarga').append(mdl);
+                            $('#idget').val(vDataID); //memasukan nilai vDataID ke dalam idget pada partial view _Edit
+                            $('#idMdlHapusKeluarga').modal('show');
+                            debugger;
+                        },
+                        error: function (mdl) {
+                            debugger;
+                        }
+                    });
+                });
+            }
+        });
+
+        $('#idBtnCreateKeluarga').click(function () {
+            $.ajax({
+                url: '/Keluarga/Create',
+                method: 'Get',
+                success: function (mdl) {
+                    debugger;
+                    $('#idBodyCreateKeluarga').empty();
+                    $('#idBodyCreateKeluarga').append(mdl);
+
+                    $('#idMdlCreateKeluarga').modal('show');
+
+                    debugger;
+                },
+                error: function (mdl) {
+                    debugger;
+                }
+            });
+
+        });
+
+    });
+</script>

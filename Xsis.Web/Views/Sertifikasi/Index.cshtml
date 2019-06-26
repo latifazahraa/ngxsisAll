@@ -1,0 +1,365 @@
+﻿@model Xsis.Model.Sertifikasi
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .bgr-popup {
+        width: 1150px;
+        height: 680px;
+        border-color: #000080;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #000080;
+    }
+
+    .cntr-popup {
+        margin-left: 3.5%;
+    }
+
+    .hdr-popup {
+        height: 45px;
+        background-color: #000080;
+        color: white;
+    }
+
+    .cntr-hdr {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        justify-content: space-between; /*button exit na jadi gak nempel lagi ke modal title*/
+    }
+
+    .vertical-menu {
+        width: 230px;
+    }
+
+        .vertical-menu a {
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            align-content: center;
+            border-color: #000080;
+            border-style: solid;
+            border-width: 1px;
+            border-bottom-width: 0;
+            color: #000080;
+            padding-left: 20%;
+        }
+
+            .vertical-menu a:hover {
+                background-color: #b3b3ff;
+            }
+
+    .table-style {
+        border: 20px;
+        color: #000080;
+    }
+
+    .button-more {
+        background-color: #000080;
+        color: white;
+    }
+
+    .bgr-popup-sm {
+        border-color: #000080;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #000080;
+    }
+
+    .cntr-hdr-sm {
+        margin-left: 50%;
+        margin-top: 50%;
+    }
+
+    .modal-dialog-edit {
+        width: 800px;
+        margin-top: 10%;
+    }
+
+    .modal-content-edit {
+        margin: 0px;
+    }
+
+    .margin-set {
+        margin-bottom: 2px;
+        margin-left: 3px;
+        margin-right: 3px;
+        margin-top: 3px;
+    }
+
+    .hdr-popup-alert {
+        background-color: darkred;
+        color: white;
+    }
+</style>
+
+<h1>Detil Pelamar</h1>
+
+@*----------------------LAYOUT POPUP----------------------------------------*@
+<button id="log" data-toggle="modal" data-target="#myModal">POPUP</button>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog cntr-popup" role="document">
+        <div class="modal-content bgr-popup">
+            <div class="modal-header hdr-popup cntr-hdr">
+                <h4 class="modal-title">Detil Pelamar</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="vertical-menu">
+                            <a href="#">Profil</a>
+                            <a href="#">Biodata</a>
+                            <a href="#">Pengalaman Kerja</a>
+                            <a href="#">Pendidikan</a>
+                            <a href="#">Pelatihan</a>
+                            <a href="#">Sertifikasi</a>
+                            <a href="#">Sumber Lowongan Kerja</a>
+                            <a href="#">Organisasi</a>
+                            <a href="#">Keluarga</a>
+                            <a href="#">Keahlian</a>
+                            <a href="#">Lain-Lain</a>
+                            <a href="#">Dokumen</a>
+                            <a href="#">Catatan</a>
+                            <a href="#">Aktivasi Akun</a>
+                            <a href="#">Lihat Test</a>
+                            <a href="#" style="border-bottom-width:1px;">Hasil Test</a>
+                        </div>
+                    </div>
+
+                    @*------------------------------TEMPAT TABLE------------------------------------*@
+                    <div class="col-md-8 col-md-pull-1">
+                        <div id="idSertifikasi">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="tblSertifikat">
+                                    <thead class="table-style">
+                                        <tr>
+                                            <th>
+                                                <h3 class="biru">Sertifikasi<button type="button" class="btn btn-link clTambahSertifikasi"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button></h3>
+                                            </th>
+                                        </tr>
+                                        <tr style="border-top-color: #000080; border-top-style:solid;">
+                                            <th>Nama Sertifikasi</th>
+                                            <th>Penerbit</th>
+                                            <th>Masa Berlaku Sertifikasi</th>
+                                            <th>#</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-style" s id="tblBodySertifikasi"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*-------------------------------------------------------------------------------*@
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*-------------------------------------------------------------------------------*@
+
+
+@*--------Modal tambah Pendidikan--------*@
+
+<div class="modal fade" id="idMdlTambahSertifikasi" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-edit" role="document">
+        <div class="modal-content"> @*modal-content-edit bgr-popup-sm*@
+            <div class="modal-header hdr-popup">
+                <h4 class="modal-title">
+                    Tambah Sertifikasi
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; opacity:1;">x</button>
+                </h4>
+            </div>
+            <div class="modal-body margin-set" id="idBodyTambahSertifikasi">
+                @*tempat modal tambah pendidikan*@
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+@*-------Modal Edit Pendidikan-----------*@
+
+<div class="modal fade" id="idMdlEditSertifikasi" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-edit" role="document">
+        <div class="modal-content">
+            <div class="modal-header hdr-popup">
+                <h4 class="modal-title">
+                    Ubah Sertifikasi
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; opacity:1;">x</button>
+                </h4>
+            </div>
+            <div class="modal-body" id="idBodyEditSertifikasi">
+                @*tempat modal edit pendidikan*@
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+@*-------Modal Alert Delete-----------*@
+
+<div class="modal fade" id="idMdlAlertSertifikasi" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document" style="margin-top: 15%">
+        <div class="modal-content">
+            <div class="modal-header hdr-popup-alert">
+                <h4 class="modal-title">
+                    Hapus Sertifikasi?
+                </h4>
+            </div>
+            <div class="modal-body" style="margin-top:7%;">
+                <div class="row" style="margin-bottom:7%;">
+                    <div class="col-lg-3" style="margin-left:6px;">
+                        <img src="http://cdn.onlinewebfonts.com/svg/img_510054.png" alt="dustbin icon" style="width:90px;height:90px;">
+                    </div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-7" id="idBodyAlertSertifikasi" style="margin-top:4%; color:darkred; font-size: 16px;"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8"></div>
+                    <div class="col-lg-4 btn-group">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color: orangered; color: white;">&nbsp Tidak &nbsp</button>
+                        <button type="button" class="btn btn-primary clHapusData" style="background-color: darkred;">&nbsp &nbsp Ya &nbsp &nbsp</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<script>
+    $(document).ready(function () {
+        var vDataEducationLevel =
+           { 1: 'SD', 2: 'SLTP', 3: 'SLTA', 4: 'Sarjana' };
+        debugger;
+        var vStrHtml = '';
+
+        $.ajax({
+            url: '/Sertifikasi/Tampil',
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $.each(mdl, function (i, d) { //menjahit data ke dalam tabel
+                    if (d.is_delete == false) {
+                        vStrHtml = vStrHtml + '<tr>' +
+                                '<td>' + d.certificate_name + '</td>' +
+                                '<td>' + d.publisher + '</td>' +
+                                '<td>' + d.valid_start_year + " - " + d.valid_start_month + " s.d " + d.until_year + " - " + d.until_month + '</td>' +
+                                '<td class="dropdown">' +
+                                   '<button class="btn btn-primary button-more btn-sm dropdown-toggle" type="button" data-toggle="dropdown">More &nbsp;' +
+                                   '<span class="caret"></span>' +
+                                   '</button>' +
+                                   '<ul class="dropdown-menu">' +
+                                   '<li><a href="" class="control clUbahSert" data-toggle="collapse" getDataSert="' + d.id + '">Ubah</a></li>' +
+                                   '<li><a href="" class="control clHapusSert" data-toggle="collapse" getFullSert=\'' + JSON.stringify(d) + '\'>Hapus</a></li>' +
+                                   '</ul>' +
+                                '</td>' +
+                                '</tr>';
+                    }
+                });
+
+                $('#tblBodySertifikasi').append(vStrHtml); //memasukan data yg sudah di jahit ke dalam body
+
+            },
+            error: function (mdl) {
+                debugger;
+            }
+
+        });
+
+        //memunculkan modal tambah pendidikan
+        $('.clTambahSertifikasi').click(function () {
+            debugger;
+
+            $.ajax({
+                url: '/Sertifikasi/Tambah',
+                method: 'Get',
+                success: function (mdl) {
+                    debugger;
+                    $('#idBodyTambahSertifikasi').empty();
+                    $('#idBodyTambahSertifikasi').append(mdl);
+                    $('#myModal').modal('hide');
+                    $('#idMdlTambahSertifikasi').modal('show');
+
+                    debugger;
+                },
+                error: function (mdl) {
+                    debugger;
+                }
+            });
+        });
+
+
+        //alert hapus data
+        $(document).on("click", ".clHapusSert", function () {
+            debugger;
+            var vHapusSert = JSON.parse($(this).attr('getFullSert'));
+            var vDataHapusSert = vHapusSert.id;
+            debugger;
+            var vAlert = '<tr>' +
+                         '<td align="center">Anda yakin ingin menghapus sertifikasi &nbsp <br/><strong>' +
+                          vHapusSert.certificate_name + '?' + '</strong></td>' +
+                         '</tr>';
+
+            $('#idBodyAlertSertifikasi').empty(vAlert);
+            $('#idBodyAlertSertifikasi').append(vAlert);
+            $('#idMdlAlertSertifikasi').modal('show');
+
+            //tomblok klik alert hapus data
+            $('.clHapusData').click(function () {
+                debugger;
+                
+                $.ajax({
+                    url: '/Sertifikasi/Hapus',
+                    data: { ID: vDataHapusSert },
+                    method: 'Post',
+                    success: function (mdl) {
+                        location.reload();
+                        debugger;
+                    },
+                    error: function (mdl) {
+                        debugger;
+                    }
+                });
+            });
+
+        });
+
+
+        //ubah data
+        $(document).on("click", ".clUbahSert", function () {
+            debugger;
+            var vDataUbah = JSON.parse($(this).attr('getDataSert'));
+            debugger;
+            $.ajax({
+                url: '/Sertifikasi/Edit',
+                data: { ID: vDataUbah },
+                method: 'Post',
+                success: function (mdl) {
+                    $('#idBodyEditSertifikasi').empty();
+                    $('#idBodyEditSertifikasi').append(mdl);
+                    $('#getId').val(vDataUbah); //memasukan nilai vDataID ke dalam idget pada partial view _Edit
+                    $('#idMdlEditSertifikasi').modal('show');
+                    debugger;
+                },
+                error: function (mdl) {
+                    debugger;
+                }
+            });
+        });
+    });
+
+
+
+
+</script>

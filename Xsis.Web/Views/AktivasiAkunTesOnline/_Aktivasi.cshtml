@@ -1,0 +1,195 @@
+﻿<style>
+    .button-trash{
+        border-width: 0px;
+        border-style: solid;
+        color: #000080;
+        background-color: transparent;
+    }
+
+    .form-custom {
+        border-color: #000080;
+        border-width: 2px;
+        height: 37px;
+    }
+
+    .name-clr {
+        color: #000080;
+        font-size: 11px;
+    }
+
+    .row-clr {
+     margin-right: 0px; 
+     margin-left: 0px; 
+    }
+
+    .margin-btn {
+        background-color:#000080;
+        color: white;
+        margin-bottom:12px;
+        margin-right:0px;
+        margin-top: 24px;
+    }
+
+    .border-input {
+        border-color: transparent;
+        box-shadow: none;
+    }
+
+</style>
+
+
+<form action="" class="form-inline margin-set" method="post" id="idFrmAktivasi">
+    <div class="row row-clr">
+        <div class="col-lg-4">
+            <label for="idTglTes" class="name-clr">Tgl. Tes *</label><br />
+            <div class="input-group">
+                <input type="text" name="test_date" class="form-control form-custom" id="idtglTes" style="border-right: none;" placeholder="">
+                <span class="input-group-addon form-custom" style="background-color: transparent; padding: 6px 7px;"><i class="glyphicon glyphicon-calendar" style="font-size: 18px; color:#000080;"></i></span>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <label for="idTglSls" class="name-clr">Tgl. Berakhir Tes *</label><br />
+            <div class="input-group">
+                <input type="text" name="expired_test" class="form-control form-custom" id="idtglSls" style="border-right: none;" placeholder="">
+                <span class="input-group-addon form-custom" style="background-color: transparent; padding: 6px 7px;"><i class="glyphicon glyphicon-calendar" style="font-size: 18px; color:#000080;"></i></span>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <label for="idAksesU" class="name-clr">Akses User *</label><br />
+            <select type="text" name="user_access" class="form-control form-custom" id="idAksesU" placeholder="">
+                <option value="">-Pilih-</option>
+                <option value="1">INSIDE</option>
+                <option value="2">OUTSIDE</option>
+            </select>
+        </div>
+    </div>
+    <div class="row row-clr col-lg-12">
+        <div align="right">
+            <button type="button" class="btn btn-primary margin-btn" id="idBtnTmbhTes">Tambah Tes</button>
+        </div>
+    </div>
+    <div class="row col-lg-12" style="margin-left:3px; color:#000080;">
+            <table class="table-responsive col-lg-12 table table-striped">
+                <thead>
+                    <tr style="border-bottom:solid; border-bottom-color:#000080; border-top:solid; border-top-color:#000080;">
+                        <th class="col-lg-3">No</th>
+                        <th class="col-lg-7">Jenis Tes</th>
+                        <th class="col-lg-2">&nbsp &nbsp #</th>
+                    </tr>
+                </thead>
+                <tbody id="idBodyTblAktivasi"> </tbody>
+            </table>
+    </div>
+    <div class="row">
+        <div class="col-lg-12" style="padding-right: 25px" align="right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-lg" style="background-color: orangered;" id="idBtnBatal">&nbsp Batal &nbsp</button>
+                <button type="submit" class="btn btn-primary btn-lg" style="background-color: #000080;" id="idBtnSimpan">Simpan</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+@*-------Modal Tambah Tes-----------*@
+
+<div class="modal fade" id="idMdlTmbhTes" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header hdr-popup">
+                <h4 class="modal-title">
+                    Tambah Tes
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; opacity:1;">x</button>
+                </h4>
+            </div>
+            <div class="row">
+                <div class="modal-body" id="idBodyTmbhTes">
+                    <label for="idTmbhTes" class="name-clr">Jenis Tes</label><br />
+                    <select type="text" name="name" class="form-control form-custom" id="idTmbhTes" placeholder="">
+                        <option value="">-Pilih-</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12" style="padding-right: 25px" align="right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary btn-lg" style="background-color: orangered;" id="idBtnBatal">&nbsp Batal &nbsp</button>
+                        <button type="submit" class="btn btn-primary btn-lg" style="background-color: #000080;" id="idBtnSimpan">Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script>
+    $(document).ready(function () {
+        //var vStrHtml = '';
+        //$.ajax({
+        //    url: '/AktivasiAkunTesOnline/TampilType',
+        //    method: 'Get',
+        //    success: function (mdl) {
+        //        debugger;
+        //        $.each(mdl, function (i, d) { //menjahit data ke dalam tabel
+        //            if (d.is_delete == false) {
+        //                vStrHtml = vStrHtml + '<tr>' +
+        //                        '<td>' + (parseInt(i)+1) + '</td>' +
+        //                        '<td>' + d.name + '</td>' +
+        //                        '<td>' +
+        //                           '<button class="btn button-trash" type="button">' +
+        //                           '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>' +
+        //                           '</button>' + '</td>' +
+        //                        '</tr>';
+        //            }
+        //        });
+
+        //        $('#idBodyTblAktivasi').append(vStrHtml); //memasukan data yg sudah di jahit ke dalam body
+
+        //    },
+        //    error: function (mdl) {
+        //        debugger;
+        //    }
+
+        //});
+
+        $("#idtglTes").datepicker({ //datepicker
+            minDate: 0,
+            dateFormat: "yy-mm-dd"
+        }).datepicker("setDate", new Date());
+
+        $("#idtglSls").datepicker({ //datepicker
+            minDate: 0,
+            dateFormat: "yy-mm-dd"
+        }).datepicker("setDate", new Date());
+
+    });
+
+    $('#idBtnTmbhTes').click(function () {
+        debugger;
+        var vTmbhTes = "'<option> -Pilih- </option>'";
+        $('#idMdlTmbhTes').modal('show');
+        $.ajax({
+            url: '/AktivasiAkunTesOnline/TambahType',
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $.each(mdl, function (i, d) {
+                    vTmbhTes = vTmbhTes +
+                               '<option value="' + d.id + '">' +
+                                d.name +
+                                '</option>';  
+                });
+                debugger;
+                $('#idTmbhTes').empty();
+                $('#idTmbhTes').append(vTmbhTes); //memasukan data yg sudah di jahit ke dalam body 
+            },
+            error: function (mdl) {
+                debugger;
+            }
+             
+        });
+
+    });
+</script>
+

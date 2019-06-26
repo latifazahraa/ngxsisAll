@@ -1,0 +1,194 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="table-responsive" style="height:600px;">
+    <table class="table table-striped">
+        <thead>
+            <tr style="border-bottom:3px solid blue;">
+                <td colspan="3">
+                    <h4 class="biru">Keahlian<button type="button" class="btn btn-link" id="idBtnCreateKeahlian"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button></h4>
+                </td>
+            </tr>
+            <tr class="biru" style="border-bottom:3px solid blue;">
+                <td >NAMA KEAHLIAN</td>
+                <td>LEVEL KEAHLIAN</td>
+                <td>#</td>
+            </tr>
+        </thead>
+        <tbody id="idTblBodyKeahlian"></tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="idMdlCreateKeahlian" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document" style="width:800px;">
+        <div class="modal-content">
+            <div class="modal-header  birubg">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title">Tambah Keahlian <span style="padding-left:560px;"></span> <button class="ClBtnCloseKeahlian" style="background-color:transparent; border:none; color:white; overflow:hidden;"><span class="glyphicon glyphicon-remove"></span></button></h4>
+            </div>
+            <div class="modal-body" id="idBodyCreateKeahlian">
+
+
+
+                @*<p>One fine body&hellip;</p>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="idMdlEditKeahlian" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document" style="width:800px;">
+        <div class="modal-content">
+            <div class="modal-header birubg">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title">Ubah Keahlian <span style="padding-left:580px;"></span> <button class="ClBtnCloseKeahlian" style="background-color:transparent; border:none; color:white; overflow:hidden;"><span class="glyphicon glyphicon-remove"></span></button></h4>
+            </div>
+            <div class="modal-body" id="idBodyEditKeahlian">
+
+
+
+                @*<p>One fine body&hellip;</p>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="idMdlHapusKeahlian" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog tengahpls" role="document">
+        <div class="modal-content lebarpls">
+            <div class="modal-header merahbg">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title">Hapus Keahlian ?</h4>
+            </div>
+            <div class="modal-body" id="idBodyHapusKeahlian">
+
+
+
+                @*<p>One fine body&hellip;</p>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script>
+
+    $(document).ready(function () {
+
+        var vStrHtml = '';
+
+        $.ajax({
+            url: '/Keahlian/Tampil',
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $.each(mdl, function (i, d) { //menjahit data ke dalam tabel
+                    debugger;
+
+                    if (d.skill_name == null) {
+                        debugger;
+                        d.skill_name = '-';
+                    }
+
+                    vStrHtml = vStrHtml + '<tr class="birutext" style="border-bottom:2px solid blue;">' +
+                            '<td>' + d.skill_name + '</td>' +
+                            '<td>' + d.name + '</td>' +
+                            //'<td><button type = "button" class="btn btn-primary UbahKeahlian" dataBarang=\'' + JSON.stringify(d) + '\' > + </button></td>' +
+
+                            '<td class="dropdown">' +
+                                '<button class="btn birubg dropdown-toggle" type="button" data-toggle="dropdown">More &nbsp;'+
+                                '<span class="caret"></span>'+
+                                '</button>'+
+                                '<ul class="dropdown-menu">'+
+                                '<li><a class="UbahKeahlian" dataID="'+ d.id +'" href="#">Ubah</a></li>'+
+                                '<li><a class="HapusKeahlianCfr" dataID="' + d.id + '" href="#">Hapus</a></li>' +
+                                '</ul>' +
+                             '</td>' +
+                            '</tr>';
+
+                });
+
+                $('#idTblBodyKeahlian').append(vStrHtml); //memasukan data yg sudah di jahit ke dalam body
+
+                $('.UbahKeahlian').click(function () {
+                    var vDataID = parseInt($(this).attr('dataID'));
+                    debugger;
+
+                    $.ajax({
+                        url: '/Keahlian/Edit',
+                        data: { ID: vDataID },
+                        method: 'Post',
+                        success: function (mdl) {
+                            $('#idBodyEditKeahlian').empty();
+                            $('#idBodyEditKeahlian').append(mdl);
+                            $('#idget').val(vDataID); //memasukan nilai vDataID ke dalam idget pada partial view _Edit
+                            $('#idMdlEditKeahlian').modal('show');
+                            debugger;
+                        },
+                        error: function (mdl) {
+                            debugger;
+                        }
+                    });
+
+                });
+
+                $('.HapusKeahlianCfr').click(function () {
+                    var vDataID = parseInt($(this).attr('dataID'));
+                    debugger;
+                    $.ajax({
+                        url: '/Keahlian/DeleteCfr',
+                        data: { ID: vDataID },
+                        method: 'Post',
+                        success: function (mdl) {
+                            $('#idBodyHapusKeahlian').empty();
+                            $('#idBodyHapusKeahlian').append(mdl);
+                            $('#idget').val(vDataID); //memasukan nilai vDataID ke dalam idget pada partial view _Edit
+                            $('#idMdlHapusKeahlian').modal('show');
+                            debugger;
+                        },
+                        error: function (mdl) {
+                            debugger;
+                        }
+                    });
+                });
+            }
+        });
+
+        $('#idBtnCreateKeahlian').click(function () {
+            $.ajax({
+                url: '/Keahlian/Create',
+                method: 'Get',
+                success: function (mdl) {
+                    debugger;
+                    $('#idBodyCreateKeahlian').empty();
+                    $('#idBodyCreateKeahlian').append(mdl);
+
+                    $('#idMdlCreateKeahlian').modal('show');
+
+                    debugger;
+                },
+                error: function (mdl) {
+                    debugger;
+                }
+            });
+
+        });
+
+    });
+</script>

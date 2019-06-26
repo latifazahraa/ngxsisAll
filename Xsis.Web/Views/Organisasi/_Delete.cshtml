@@ -1,0 +1,84 @@
+﻿
+
+<table class="table-responsive">
+    <tr>
+        <td>
+            <input type="hidden" name="id" id="idget" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span class="glyphicon glyphicon-trash" style="font-size:70px;"></span>
+        </td>
+        <td align="center">
+            <label class="merahtext" style="font-size:17px;">
+                &nbsp;&nbsp;&nbsp;&nbsp;Anda yakin ingin menghapus organisasi <br />
+                <input type="text" readonly style="border:0px; width:300px; text-align:center; font-size:20px;" id="idLblNamaOrganisasi" />
+            </label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <br />
+        </td>
+    </tr>
+    @*<tr>
+        <td>
+            <button type="button" class="btn orenwoy" id="idBtnCancelOrganisasi">Tidak</button>
+            <button type="button" class="btn merahwoy" id="idBtnHapusOrganisasi">&nbsp;&nbsp;&nbsp;Ya&nbsp;&nbsp;&nbsp;</button>
+        </td>
+    </tr>*@
+</table>
+<div class="row">
+    <table align="right">
+        <tr>
+            <td colspan="1">
+                <div class="btn btn-group">
+                    <button type="button" class="btn orenwoy" id="idBtnCancelOrganisasi">Tidak</button>
+                    <button type="button" class="btn merahwoy" id="idBtnHapusOrganisasi">&nbsp;&nbsp;&nbsp;Ya&nbsp;&nbsp;&nbsp;</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: '/Organisasi/AmbilData',
+            data: { ID: $('#idget').val() },
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $('#idLblNamaOrganisasi').val(mdl.name + ' ?');
+            }
+        })
+    });
+    
+    $('#idBtnCancelOrganisasi').click(function () {
+        $('#idMdlHapusOrganisasi').close;
+        location.reload();
+    });
+
+    $('#idBtnHapusOrganisasi').click(function () {
+        var vDataID = $('#idget').val();
+        debugger;
+        //
+        //
+        $.ajax({
+            url: '/Organisasi/Delete',
+            data: { ID: vDataID },
+            method: 'Post',
+            success: function (mdl) {
+                //alert('Berhasil Menghapus Data');
+                location.reload();
+                debugger;
+            },
+            error: function (mdl) {
+                debugger;
+            }
+        });
+        //
+    })
+</script>
+

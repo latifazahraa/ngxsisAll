@@ -1,0 +1,248 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="table-responsive" style="height:600px;">
+    <table class="table table-striped">
+        <thead>
+            <tr style="border-bottom:3px solid blue;">
+                <td colspan="3">
+                    <h4 class="biru">Pengalaman Kerja<button type="button" class="btn btn-link" id="idBtnCreatePekerjaan"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button></h4>
+                </td>
+            </tr>
+            <tr class="biru" style="border-bottom:3px solid blue;">
+                <td>DETAIL PEKERJAAN</td>
+                <td>CATATAN</td>
+                <td>#</td>
+            </tr>
+        </thead>
+        <tbody id="idTblBodyPekerjaan"></tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="idMdlCreatePekerjaan" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog tengahwoy" role="document">
+        <div class="modal-content lebarwoy">
+            <div class="modal-header  birubg">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title">Tambah Pengalaman Kerja <span style="padding-left:510px;"></span> <button class="ClBtnClosePekerjaan" style="background-color:transparent; border:none; color:white; overflow:hidden;"><span class="glyphicon glyphicon-remove"></span></button></h4>
+            </div>
+            <div class="modal-body" id="idBodyCreatePekerjaan">
+
+
+
+                @*<p>One fine body&hellip;</p>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="idMdlEditPekerjaan" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog tengahwoy" role="document">
+        <div class="modal-content lebarwoy">
+            <div class="modal-header birubg">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title">Ubah Pengalaman Kerja <span style="padding-left:530px;"></span> <button class="ClBtnClosePekerjaan" style="background-color:transparent; color:white; border:none; overflow:hidden;"><span class="glyphicon glyphicon-remove"></span></button></h4>
+            </div>
+            <div class="modal-body" id="idBodyEditPekerjaan">
+
+
+
+                @*<p>One fine body&hellip;</p>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="idMdlHapusPekerjaan" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog tengahpls" role="document">
+        <div class="modal-content lebarpls">
+            <div class="modal-header merahbg">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title">Hapus Pengalaman Kerja ?</h4>
+            </div>
+            <div class="modal-body" id="idBodyHapusPekerjaan">
+
+
+
+                @*<p>One fine body&hellip;</p>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="idMdlCreateProyek" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog tengahwoy" role="document">
+        <div class="modal-content lebarwoy">
+            <div class="modal-header  birubg">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title">Tambah Proyek <span style="padding-left:605px;"></span> <button class="ClBtnCloseProyek" style="background-color:transparent; border:none; color:white; overflow:hidden;"><span class="glyphicon glyphicon-remove"></span></button></h4>
+            </div>
+            <div class="modal-body" id="idBodyCreateProyek">
+
+
+
+                @*<p>One fine body&hellip;</p>*@
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+    //var vDataSkill =
+    //      { 1:'Novice',2:'Beginner',3:'Competent',4:'Pro',5:'Expert' };
+
+    $(document).ready(function () {
+
+        var vStrHtml = '';
+
+
+        $.ajax({
+            url: '/Pekerjaan/Tampil',
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $.each(mdl, function (i, d) { //menjahit data ke dalam tabel
+                    debugger;
+                    if (d.resign_year == null) {
+                        debugger;
+                        d.resign_year = '';
+                        d.resign_month = '';
+                    }
+                    else {
+                        debugger;
+                        d.resign_year = d.resign_year;
+                        d.resign_month = d.resign_month;
+                    }
+
+                    if (d.notes == null) {
+                        d.notes = '-';
+                    }
+
+                    vStrHtml = vStrHtml + '<tr class="birutext" style="border-bottom:2px solid blue;">' +
+                            '<td>' + d.company_name + '&nbsp;(' + d.join_year + '-' + d.join_month + '&nbsp; s/d &nbsp;' +
+                            d.resign_year + '-' + d.resign_month + ')' +
+                            '</td>' +
+                            '<td>' + d.notes + '</td>' +
+                            //'<td><button type = "button" class="btn btn-primary UbahKeahlian" dataBarang=\'' + JSON.stringify(d) + '\' > + </button></td>' +
+
+                            '<td class="dropdown">' +
+                                '<button class="btn birubg dropdown-toggle" type="button" data-toggle="dropdown">More &nbsp;'+
+                                '<span class="caret"></span>'+
+                                '</button>'+
+                                '<ul class="dropdown-menu">'+
+                                '<li><a class="UbahPekerjaan" dataID="'+ d.id +'" href="#">Ubah</a></li>'+
+                                '<li><a class="HapusPekerjaanCfr" dataID="' + d.id + '" href="#">Hapus</a></li>' +
+                                '<li><a class="TambahProyek" dataID="' + d.id + '" href="#">Tambah Project</a></li>' +
+                                '</ul>' +
+                             '</td>' +
+                            '</tr>';
+
+                });
+
+                $('#idTblBodyPekerjaan').append(vStrHtml); //memasukan data yg sudah di jahit ke dalam body
+
+                $('.UbahPekerjaan').click(function () {
+                    var vDataID = parseInt($(this).attr('dataID'));
+                    debugger;
+
+                    $.ajax({
+                        url: '/Pekerjaan/Edit',
+                        data: { ID: vDataID },
+                        method: 'Post',
+                        success: function (mdl) {
+                            $('#idBodyEditPekerjaan').empty();
+                            $('#idBodyEditPekerjaan').append(mdl);
+                            $('#idget').val(vDataID); //memasukan nilai vDataID ke dalam idget pada partial view _Edit
+                            $('#idMdlEditPekerjaan').modal('show');
+                            debugger;
+                        },
+                        error: function (mdl) {
+                            debugger;
+                        }
+                    });
+
+                });
+
+                $('.TambahProyek').click(function () {
+                    var vDataID = parseInt($(this).attr('dataID'));
+                    debugger;
+
+                    $.ajax({
+                        url: '/Proyek/Create',
+                        data: { ID: vDataID },
+                        method: 'Post',
+                        success: function (mdl) {
+                            $('#idBodyCreateProyek').empty();
+                            $('#idBodyCreateProyek').append(mdl);
+                            $('#idget').val(vDataID); //memasukan nilai vDataID ke dalam idget pada partial view _Create
+                            $('#idMdlCreateProyek').modal('show');
+                            debugger;
+                        },
+                        error: function (mdl) {
+                            debugger;
+                        }
+                    });
+
+                });
+
+                $('.HapusPekerjaanCfr').click(function () {
+                    var vDataID = parseInt($(this).attr('dataID'));
+                    debugger;
+                    $.ajax({
+                        url: '/Pekerjaan/DeleteCfr',
+                        data: { ID: vDataID },
+                        method: 'Post',
+                        success: function (mdl) {
+                            $('#idBodyHapusPekerjaan').empty();
+                            $('#idBodyHapusPekerjaan').append(mdl);
+                            $('#idget').val(vDataID); //memasukan nilai vDataID ke dalam idget pada partial view _Edit
+                            $('#idMdlHapusPekerjaan').modal('show');
+                            debugger;
+                        },
+                        error: function (mdl) {
+                            debugger;
+                        }
+                    });
+                });
+            }
+        });
+
+        $('#idBtnCreatePekerjaan').click(function () {
+            $.ajax({
+                url: '/Pekerjaan/Create',
+                method: 'Get',
+                success: function (mdl) {
+                    debugger;
+                    $('#idBodyCreatePekerjaan').empty();
+                    $('#idBodyCreatePekerjaan').append(mdl);
+                    $('#idMdlCreatePekerjaan').modal('show');
+                    debugger;
+                },
+                error: function (mdl) {
+                    debugger;
+                }
+            });
+
+        });
+
+    });
+</script>

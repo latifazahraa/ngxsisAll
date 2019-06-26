@@ -1,0 +1,137 @@
+﻿<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header_app">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Test App</title>
+    <!-- jQuery 3 -->
+    <script src="~/template_header/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/template_header/bootstrap.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <link href="~/template_header/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+
+    <!-- Ionicons -->
+    <link href="~/template_header/ionicons.min.css" rel="stylesheet" />
+    <!-- Date Picker -->
+    <link href="~/template_header/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/template_header/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="~/template_header/theme.css" rel="stylesheet" />
+    <style>
+        .sticky-fixed{
+            position:fixed;
+        }
+        .hdr-atas{
+            margin-top:0px;
+            padding-top:0px;
+        }
+        .bg-putih{
+            background-color:#ffffff;
+            padding-top:0px;
+            margin-top:0px;
+        }
+        .font-putih{
+            color:#ffffff;
+        }
+        .margin-top-nav {
+            color: #000080;
+            font-weight: bold;
+            font-size:30px;
+            margin-top: 0px;
+            margin-left: 100px;
+            margin-bottom: 0px;
+            margin-right: 50px;
+            text-align: left;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header hdr-atas">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed"
+                            data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                            aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <!-- First dropdown code -->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Menu 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Sub Menu 1</a></li>
+                                <li><a href="#">Sub Menu 2</a></li>
+                                <li><a href="#">Sub Menu 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Menu 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Sub Menu 1</a></li>
+                                <li><a href="#">Sub Menu 2</a></li>
+                                <li><a href="#">Sub Menu 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Menu 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Sub Menu 1</a></li>
+                                <li><a href="#">Sub Menu 2</a></li>
+                                <li><a href="#">Sub Menu 3</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- Second dropdown code -->
+                        <li>
+                            <a href="#">
+                                <i class="glyphicon glyphicon-bell"></i>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Hi, Imam&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Ganti Password</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </header>
+    <header class="main-header" th:fragment="header">
+        <nav class="navbar bg-putih">
+            <div class="container-fluid bg-putih">
+                <h1 class="margin-top-nav">XSIS 2.0</h1>
+                
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    </header>
+    <!-- jQuery 3 -->
+    @*<script src="~/template_header/jquery.min.js"></script>*@
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/template_header/bootstrap.min.js"></script>
+</body>
+</html>

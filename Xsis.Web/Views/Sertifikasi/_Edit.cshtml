@@ -1,0 +1,360 @@
+﻿<style>
+    .form-custom {
+        border-color: #000080;
+        border-width: 2px;
+        height: 45px;
+    }
+
+    .name-clr {
+        color: #000080;
+        font-size: 10px;
+    }
+
+    [data-validation-message] {
+        display: none;
+        color: red;
+        font-weight: bold;
+    }
+
+        [data-validation-message].message-visible {
+            display: block;
+        }
+
+    .form-custom.invalid {
+        border-color: red;
+    }
+</style>
+
+<form action="" class="margin-set" method="post" id="idFrmEditSertifikasi">
+    <div class="row">
+        <div class="col-lg-6">
+            <label for="idSertifikasiEdit" class="name-clr">Nama Sertifikasi*</label><br />
+            <input type="text" name="certificate_name" data-validate="required" class="form-control form-custom" id="idSertifikasiEdit" placeholder="">
+            <input type="hidden" name="id" id="getId" /> @*untuk mengambil id dari data yang akan diedit*@
+            <small role="alert"
+                   aria-hidden="true"
+                   data-validation-message="required">
+                Nama Sertifikasi Harus Diisi.
+            </small>
+        </div>
+
+        <div class="col-lg-6">
+            <label for="idPenerbitEdit" class="name-clr">Penerbit*</label><br />
+            <input type="text" name="publisher" data-validate="required" class="form-control form-custom" id="idPenerbitEdit" placeholder="">
+            <small role="alert"
+                   aria-hidden="true"
+                   data-validation-message="required">
+                Penerbit Harus Diisi.
+            </small>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <label for="idBlnMulaiEdit" class="name-clr">Berlaku Mulai</label><br />
+            <select type="text" name="valid_start_month" class="form-control form-custom" id="idBlnMulaiEdit" placeholder="-Pilih-">
+                <option>-Pilih Bulan-</option>
+                <option value="1">Jan</option>
+                <option value="2">Feb</option>
+                <option value="3">Mar</option>
+                <option value="4">Apr</option>
+                <option value="5">Mei</option>
+                <option value="6">Jun</option>
+                <option value="7">Jul</option>
+                <option value="8">Ags</option>
+                <option value="9">Sep</option>
+                <option value="10">Okt</option>
+                <option value="11">Nov</option>
+                <option value="12">Des</option>
+            </select>
+        </div>
+
+        <div class="col-lg-3">
+            <label for="idThnMulaiEdit" class="name-clr"> &nbsp </label><br />
+            <select type="text" name="valid_start_year" class="form-control form-custom" id="idThnMulaiEdit" placeholder="-Pilih-">
+                <option>-Pilih Tahun-</option>
+            </select>
+        </div>
+
+        <div class="col-lg-3">
+            <label for="idBlnSelesaiEdit" class="name-clr">Berlaku Sampai</label><br />
+            <select type="text" name="until_month" class="form-control form-custom" id="idBlnSelesaiEdit" placeholder="-Pilih-">
+                <option>-Pilih Bulan-</option>
+                <option value="1">Jan</option>
+                <option value="2">Feb</option>
+                <option value="3">Mar</option>
+                <option value="4">Apr</option>
+                <option value="5">Mei</option>
+                <option value="6">Jun</option>
+                <option value="7">Jul</option>
+                <option value="8">Ags</option>
+                <option value="9">Sep</option>
+                <option value="10">Okt</option>
+                <option value="11">Nov</option>
+                <option value="12">Des</option>
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <label for="idThnSelesaiEdit" class="name-clr"> &nbsp </label><br />
+            <select type="text" name="until_year" class="form-control form-custom" id="idThnSelesaiEdit" placeholder="-Pilih-">
+                <option>-Pilih Tahun-</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <label for="idCttnEdit" class="name-clr">Catatan</label><br />
+            <input class="form-control form-custom col-md-12" id="idCttnEdit" name="notes" style="height:100px;"><br />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8"></div>
+        <div class="col-lg-4 btn-group">
+            <button type="button" class="btn btn-primary btn-lg" style="background-color: orangered;" id="idBtnBatalEdit">&nbsp Batal &nbsp</button>
+            <button type="submit" class="btn btn-primary btn-lg" id="idBtnSimpanEdit">Simpan</button>
+        </div>
+    </div>
+
+</form>
+
+<script>
+    var d = new Date();
+
+    $(document).ready(function () {
+
+        //looping untuk mengeluarkan tahun awal
+        var vThnAwal = "";
+        for (var i = d.getFullYear() ; i >= 1970; i--) {
+            vThnAwal = vThnAwal +
+            '<option>' + i + '</option>'
+        }
+
+        $('#idThnMulaiEdit').append(vThnAwal);
+        $('#idThnSelesaiEdit').append(vThnAwal);
+
+        debugger;
+        $.ajax({
+            url: '/Sertifikasi/AmbilData',
+            data: { ID: $('#getId').val() },
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $('#idSertifikasiEdit').val(mdl.certificate_name);
+                $('#idPenerbitEdit').val(mdl.publisher);
+                $('#idBlnMulaiEdit').val(mdl.valid_start_month).selected;
+                $('#idThnMulaiEdit').val(mdl.valid_start_year).selected;
+                $('#idBlnSelesaiEdit').val(mdl.until_month).selected;
+                $('#idThnSelesaiEdit').val(mdl.until_year).selected;
+                $('#idThnLulusEdit').val(mdl.graduation_year).selected;
+                $('#idCttnEdit').val(mdl.notes);
+                debugger;
+
+            },
+            error: function (mdl) {
+                debugger;
+            }
+        });
+
+        debugger;
+        
+
+        //looping untuk mengeluarkan tahun akhir
+        $("#idThnMulaiEdit").click(function () {
+            debugger;
+            var vStartOpt = $('#idThnMulaiEdit').val();
+            var vEndOption = '<option>' + "-Pilih Tahun-" + '</option>';
+
+            if ($('#idBlnMulaiEdit').val() > $('#idBlnSelesaiEdit').val()) {
+                vStartOpt = parseInt($('#idThnMulaiEdit').val()) + 1;
+            }
+
+            for (var i = d.getFullYear() ; i >= vStartOpt; i--) {
+                vEndOption = vEndOption +
+                '<option>' + i + '</option>'
+            }
+
+            $('#idThnSelesaiEdit').empty();
+            $('#idThnSelesaiEdit').append(vEndOption);
+        });
+
+
+        $('#idBtnBatalEdit').click(function () {
+            $('#idMdlEditSertifikasi').close;
+            location.reload();
+        });
+    });
+
+        function editsertifikasi(){
+        //$('#idBtnSimpanEdit').click(function () {
+            debugger;
+            var vDataEdit = $('#idFrmEditSertifikasi').serialize();
+            $.ajax({
+                url: '/Sertifikasi/EditSimpan',
+                data: vDataEdit,
+                method: 'Post',
+                success: function (mdl) {
+                    if (mdl.EditSimpan == "Berhasil") {
+                        debugger;
+                        alert("Data berhasil diEdit");
+                        $('#idMdlEditSertifikat').close;
+                        location.reload();
+                        $('#myModal').modal('show');
+
+                    }
+                    else {
+                        debugger;
+                        alert("Data gagal diEdit");
+                        $('#myModal').modal('show');
+                    }
+                }
+            });
+        }
+    
+</script>
+
+<script>
+// (1) Defining our validator-functions
+//     for later use. They return
+//     "true", if the validation passes.
+
+    const validators = {
+  // Checks the field for emptiness.
+    required: element => element.value.length > 0,
+
+  // Checks if there are no numbers
+  // in the field.
+  noNumbers: element => !element.value.match(/[0-9]/g),
+
+  // Checks if the value is shorter
+  // than 10 characters.
+  maxLength: element => element.value.length <= 10,
+
+  //TahunValid: element => document.getElementById("idTahunMasuk").value <= document.getElementById("idTahunKeluar").value,
+
+  //BulanValid: element => (parseInt(document.getElementById("idTahunMasuk").value) == parseInt(document.getElementById("idTahunKeluar").value) && parseInt(document.getElementById("idWaktuMasuk").value) <= parseInt(document.getElementById("idWaktuKeluar").value)),
+  // Checks if the checkbox is checked.
+  mustBeChecked: element => element.checked
+};
+
+// (2) Check the contents of an input,
+//     get all validators, and mark
+//     the field in case of invalidity.
+function validateElement(element) {
+  resetValidation(element);
+
+  // Store all validators from the
+  // data-validate-attribute into
+  // an array.
+  const rules = element.dataset.validate.split(" ");
+
+  // For every validator on the
+  // field...
+  rules.forEach(rule => {
+    // ...find the corresponding
+    // validator-function from our
+    // object from #1 and call it
+    // with the element as parameter.
+    if (validators[rule](element)) {
+      // If the function returns true, all is fine.
+        debugger;
+        return;
+    } else {
+      // If it returns false, the
+      // validation failed.
+      // In that case, the
+      // markElementInvalid-function
+      // takes care of showing the
+      // error-message.
+      markElementInvalid(element, rule);
+    }
+  });
+}
+
+// (3) Adds classes to an element,
+//     so it appears invalid. Also
+//     it picks the correct feedback-
+//     message and sets it visible.
+function markElementInvalid(element, validatorName) {
+  element.classList.add("invalid");
+  element.setAttribute("aria-invalid", true);
+  const feedbackMessage = element.parentNode.querySelector(
+    `[data-validation-message=${validatorName}]`
+  );
+  feedbackMessage.classList.add("message-visible");
+  feedbackMessage.setAttribute("aria-hidden", false);
+}
+
+// (4) Removes all traces of
+//     validation from an element,
+//     like the error-messages and
+//     the styling.
+//     (Pretty much the opposite of #3)
+function resetValidation(element) {
+  element.classList.remove("invalid");
+  element.setAttribute("aria-invalid", false);
+  element.parentNode
+    .querySelectorAll("[data-validation-message]")
+    .forEach(e => {
+      e.classList.remove("message-visible");
+      e.setAttribute("aria-hidden", true);
+    });
+}
+
+// (5) Store the form and its
+//     inputs in variables.
+const form = document.getElementById("idFrmEditSertifikasi");
+const formElements = Array.from(form.elements);
+
+// (6) Every input gets an
+//     event-listener attached.
+formElements.forEach(formElement => {
+  // Do nothing if the element has
+  // no data-validate-attribute.
+  if (!formElement.dataset) return;
+  if (!formElement.dataset.validate) return;
+
+  // Attach the blur-event-listener
+  // to the element.
+  formElement.addEventListener("", () => {
+    // This means, validateElement will
+    // be called everytime the element
+    // loses focus.
+    validateElement(formElement);
+  });
+});
+
+// (7) We're doing what we did at #3,
+//     only on form-submit, and for
+//     every field.
+form.addEventListener("submit", event => {
+  // Let's assume, everything is fine.
+  let formIsValid = true;
+  form.classList.remove("invalid");
+  debugger;
+  // We'll check every field in the form.
+  // (same as #3)
+  formElements.forEach(formElement => {
+    if (!formElement.dataset) return;
+    if (!formElement.dataset.validate) return;
+    validateElement(formElement);
+  });
+
+  // If there are any "invalid"-classes
+  // after we checked all fields, the form
+  // is invalid...
+  formIsValid = form.querySelectorAll(".invalid").length === 0;
+
+  // ...and will not be submitted.
+  if (formIsValid === false) {
+    form.classList.add("invalid");
+    event.preventDefault();
+  }
+  else {
+      debugger;
+      editsertifikasi();
+  }
+});
+</script>
+

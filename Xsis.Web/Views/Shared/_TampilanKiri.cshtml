@@ -1,0 +1,72 @@
+﻿<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .batas-atas{
+            margin-top:10px;
+        }
+        .batas-bawah{
+            padding-left:0px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="span3">
+        <div class="sidebar">
+            <ul class="widget widget-menu unstyled batas-atas batas-bawah" style="background-color: white; border-style: solid; border-width: 1px;border-color:#000066;">
+                <li>
+                    <a class="collapsed" data-toggle="collapse" href="#togglePages01">
+                        ⬤ &nbsp;&nbsp;&nbsp; Menu 1
+                    </a>
+                </li>
+                <li>
+                    <a class="collapsed" data-toggle="collapse" href="#togglePages02">
+                        ⬤ &nbsp;&nbsp;&nbsp; Menu 2
+                    </a>
+                </li>
+                <li>
+                    <a class="collapsed" data-toggle="collapse" href="#togglePages03">
+                        <i class="fa fa-angle-down pull-right"></i>⬤ &nbsp;&nbsp;&nbsp; Menu 3<span class="glyphicon glyphicon-chevron-down pull-right"></span>
+                    </a>
+                    <ul id="togglePages03" class="collapse unstyled">
+                        <li><a href="#">@*</i>*@SubMenu 1</a></li>
+                        <li><a href="#">@*</i>*@SubMenu 2</a></li>
+                        <li><a href="#">@*</i>*@SubMenu 3</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="collapsed02" data-toggle="collapse" href="#togglePages04">
+                        ⬤ &nbsp;&nbsp;&nbsp; Menu 4
+                    </a>
+                </li>
+                <li>
+                    <a class="collapsed dropdown-toggle" data-toggle="collapse" href="#togglePages05">
+                        <i class="fa fa-angle-down pull-right"></i>⬤ &nbsp;&nbsp;&nbsp; Menu 5<span class="glyphicon glyphicon-chevron-down pull-right"></span>
+                    </a>
+                    <ul id="togglePages05" class="collapse">
+                        <li><a href="#"><i class="icon-inbox"></i>SubMenu 1</a></li>
+                        <li><a href="#"><i class="icon-inbox"></i>SubMenu 2</a></li>
+                        <li><a href="#"><i class="icon-inbox"></i>SubMenu 3</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!--/.sidebar-->
+    </div>
+    <aside th:fragment="sidebar" class="main-sidebar">
+
+        <!--/.span3-->
+    </aside>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            $(".side-nav .collapse").on("hide.bs.collapse", function () {
+                $(this).prev().find(".fa").eq(1).removeClass("fa-angle-right").addClass("fa-angle-down");
+            });
+            $('.side-nav .collapse').on("show.bs.collapse",function () {
+                $(this).prev().find(".fa").eq(1).removeClass("fa-angle-down").addClass("fa-angle-right");
+            });
+        });
+    </script>
+</body>
+</html>

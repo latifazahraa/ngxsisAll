@@ -1,0 +1,41 @@
+﻿<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .font-biru{
+            color:#000080;
+            align-content:center;
+        }
+.footer-xsis {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #f2f2f2;
+   color: #000080;
+   text-align: center;
+}
+    </style>
+</head>
+<body>
+    <div th:fragment="footer" th:remove="tag">
+        <div class="footer-xsis">
+            <b class="copyright font-biru">&copy; 2020 - Xsis Mitra Utama </b>
+        </div>
+    </div>
+    <div th:fragment="scripts" th:remove="tag">
+        <!-- jQuery UI 1.11.4 -->
+        <script src="~/template_footer/jquery-ui.min.js"></script>
+        <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+        <script>
+			$.widget.bridge('uibutton', $.ui.button);
+        </script>
+        <!-- Date picker -->
+        <script src="~/template_footer/bootstrap-datepicker.min.js"></script>
+        <script src="~/template_footer/jquery-ui-1.10.1.custom.min.js"></script>
+        <script src="~/template_footer/jquery.flot.js"></script>
+        <script src="~/template_footer/jquery.flot.resize.js"></script>
+        <script src="~/template_footer/jquery.dataTables.js"></script>
+        <script src="~/template_footer/common.js"></script>
+    </div>
+</body>
+</html>

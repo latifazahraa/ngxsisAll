@@ -1,0 +1,157 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Style/Login.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/scripts/bootstrap.js"></script>
+
+    <title>Login</title>
+</head>
+<body class="bcgr">
+    <div class="row background-lgn">
+        <div class="col-md-6 cntr-content">
+            <form id="frmLogin">
+                <table>
+                    <tr>
+                        <td><h1 class="fnt" style="font-size:40px;">XSIS 2.0</h1></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" class="form-control brdr-lgn size-lgn" id="txtEmail" placeholder="Email"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="password" class="form-control brdr-lgn size-lgn" id="txtPwd" placeholder="Password"></td>
+                    </tr>
+                    <tr>
+                        <td><button type="button" class="btn btn-clr size-lgn" id="btnSubmit">Masuk</button></td>
+                    </tr>
+                    <tr>
+                        <td><a class="fnt" href="@Url.Action("Index","ForgotPassword")">Lupa Password</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+                            <br />
+                            <p class="fnt">2020 - Xsis Mitra Utama</p>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script>
+    debugger;
+    $(document).ready(function () {
+        debugger;
+        $.ajax({
+            url: '/Login/clearAttempt',
+            type: 'get',
+            success: function (mdl)
+            {
+                debugger;
+            },
+            error: function(mdl)
+            {
+
+            }
+        });
+    });
+
+    $('#btnSubmit').click(function () {
+        debugger;
+        var vUser = $('#txtEmail').val()
+        var vPwd = $('#txtPwd').val()
+        var count = 0;
+        debugger;
+
+        $.ajax({
+            url: '/Login/cekUser',
+            data: { vUser },
+            method: 'post',
+            success: function (mdl)
+            {
+                debugger;
+                if (vUser != mdl.email && vPwd != mdl.abpwd || vUser != mdl.abuid && vPwd != mdl.abpwd)
+                {
+                    debugger;
+                    var idUser = mdl.id;
+                    var atm = mdl.attempt;
+                    if (mdl.is_delete != true)
+                    {
+                        debugger;
+                        $.ajax
+                        ({
+                            url: '/Login/Attempt',
+                            data: { idUser },
+                            method: 'post',
+                            success: function (mdl)
+                            {
+                                debugger;
+
+                                if(mdl.attempt!=3)
+                                {
+                                    alert("Invalid Email / Password attempt= " + atm);
+                                }
+                                else
+                                {
+                                    alert("Invalid Email / Password attempt= " + atm + '" Akun anda terkunci"');
+                                }
+                            },
+                            error: function (mdl)
+                            {
+                                debugger;
+                            }
+                        });
+                    }
+                }
+                else
+                {
+                    debugger;
+                    if (mdl.is_delete == true)
+                    {
+                        debugger;
+                        alert("Akun anda tidak aktif");
+                    }
+                    else if (mdl.is_locked == true)
+                    {
+                        debugger;
+                        alert("Akun anda terkunci");
+                    }
+                    else
+                    {
+                        debugger;
+                        var uID = mdl.id
+                        sessionStorage.setItem("UserID", uID);
+                        var username = sessionStorage.getItem("UserID");
+                        alert(username);
+                        if ('<%= Session["UserID"] %>' != null)
+                        {
+                            var url = "@Url.Action("Index","Home")"
+                            window.location.href = url;
+                        }                        
+                    }
+                }
+            },
+            error: function (mdl)
+            {
+                debugger;
+                alert("Invalid Email / Password");
+            }
+
+        });
+    });
+</script>
+

@@ -1,0 +1,89 @@
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\ngxsis\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.dll
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\ngxsis\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.pdb
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\ngxsis\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.csprojResolveAssemblyReference.cache
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\ngxsis\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.dll
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\ngxsis\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.pdb
+D:\Bootcamp-196\IrfanMaulana\Harsan\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.dll.config
+D:\Bootcamp-196\IrfanMaulana\Harsan\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.dll
+D:\Bootcamp-196\IrfanMaulana\Harsan\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.pdb
+D:\Bootcamp-196\IrfanMaulana\Harsan\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.dll
+D:\Bootcamp-196\IrfanMaulana\Harsan\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.SqlServer.dll
+D:\Bootcamp-196\IrfanMaulana\Harsan\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.xml
+D:\Bootcamp-196\IrfanMaulana\Harsan\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.SqlServer.xml
+D:\Bootcamp-196\IrfanMaulana\Harsan\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.csprojResolveAssemblyReference.cache
+D:\Bootcamp-196\IrfanMaulana\Harsan\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.dll
+D:\Bootcamp-196\IrfanMaulana\Harsan\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.pdb
+D:\Bootcamp-196\IrfanMaulana\Harsan\ngxsis\Xsis.Repo\bin\Debug\Xsis.Model.dll
+D:\Bootcamp-196\IrfanMaulana\Harsan\ngxsis\Xsis.Repo\bin\Debug\Xsis.ViewModel.dll
+D:\Bootcamp-196\IrfanMaulana\Harsan\ngxsis\Xsis.Repo\bin\Debug\Xsis.Model.pdb
+D:\Bootcamp-196\IrfanMaulana\Harsan\ngxsis\Xsis.Repo\bin\Debug\Xsis.ViewModel.pdb
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\DB Xsis\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.dll.config
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\DB Xsis\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.dll
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\DB Xsis\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.pdb
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\DB Xsis\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.dll
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\DB Xsis\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\DB Xsis\ngxsis\Xsis.Repo\bin\Debug\Xsis.Model.dll
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\DB Xsis\ngxsis\Xsis.Repo\bin\Debug\Xsis.ViewModel.dll
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\DB Xsis\ngxsis\Xsis.Repo\bin\Debug\Xsis.Model.pdb
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\DB Xsis\ngxsis\Xsis.Repo\bin\Debug\Xsis.ViewModel.pdb
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\DB Xsis\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.xml
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\DB Xsis\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\DB Xsis\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.csprojResolveAssemblyReference.cache
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\DB Xsis\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.dll
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\DB Xsis\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.pdb
+C:\Users\ASUS\Desktop\XSIS\NGSIS TIFA\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.dll.config
+C:\Users\ASUS\Desktop\XSIS\NGSIS TIFA\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.dll
+C:\Users\ASUS\Desktop\XSIS\NGSIS TIFA\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.pdb
+C:\Users\ASUS\Desktop\XSIS\NGSIS TIFA\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.dll
+C:\Users\ASUS\Desktop\XSIS\NGSIS TIFA\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ASUS\Desktop\XSIS\NGSIS TIFA\ngxsis\Xsis.Repo\bin\Debug\Xsis.Model.dll
+C:\Users\ASUS\Desktop\XSIS\NGSIS TIFA\ngxsis\Xsis.Repo\bin\Debug\Xsis.ViewModel.dll
+C:\Users\ASUS\Desktop\XSIS\NGSIS TIFA\ngxsis\Xsis.Repo\bin\Debug\Xsis.Model.pdb
+C:\Users\ASUS\Desktop\XSIS\NGSIS TIFA\ngxsis\Xsis.Repo\bin\Debug\Xsis.ViewModel.pdb
+C:\Users\ASUS\Desktop\XSIS\NGSIS TIFA\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.xml
+C:\Users\ASUS\Desktop\XSIS\NGSIS TIFA\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ASUS\Desktop\XSIS\NGSIS TIFA\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\Desktop\XSIS\NGSIS TIFA\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.dll
+C:\Users\ASUS\Desktop\XSIS\NGSIS TIFA\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.pdb
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\github tifa\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.dll.config
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\github tifa\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.dll
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\github tifa\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.pdb
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\github tifa\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.dll
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\github tifa\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\github tifa\ngxsis\Xsis.Repo\bin\Debug\Xsis.Model.dll
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\github tifa\ngxsis\Xsis.Repo\bin\Debug\Xsis.ViewModel.dll
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\github tifa\ngxsis\Xsis.Repo\bin\Debug\Xsis.Model.pdb
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\github tifa\ngxsis\Xsis.Repo\bin\Debug\Xsis.ViewModel.pdb
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\github tifa\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.xml
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\github tifa\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\github tifa\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.csprojResolveAssemblyReference.cache
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\github tifa\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.dll
+C:\Users\Latifa Zahra\Documents\Visual Studio 2015\Projects\github tifa\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.pdb
+C:\Users\Astuti Widoretno\Documents\github tifa\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.dll.config
+C:\Users\Astuti Widoretno\Documents\github tifa\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.dll
+C:\Users\Astuti Widoretno\Documents\github tifa\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.pdb
+C:\Users\Astuti Widoretno\Documents\github tifa\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.dll
+C:\Users\Astuti Widoretno\Documents\github tifa\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Astuti Widoretno\Documents\github tifa\ngxsis\Xsis.Repo\bin\Debug\Xsis.Model.dll
+C:\Users\Astuti Widoretno\Documents\github tifa\ngxsis\Xsis.Repo\bin\Debug\Xsis.ViewModel.dll
+C:\Users\Astuti Widoretno\Documents\github tifa\ngxsis\Xsis.Repo\bin\Debug\Xsis.Model.pdb
+C:\Users\Astuti Widoretno\Documents\github tifa\ngxsis\Xsis.Repo\bin\Debug\Xsis.ViewModel.pdb
+C:\Users\Astuti Widoretno\Documents\github tifa\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.xml
+C:\Users\Astuti Widoretno\Documents\github tifa\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Astuti Widoretno\Documents\github tifa\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.csprojResolveAssemblyReference.cache
+C:\Users\Astuti Widoretno\Documents\github tifa\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.dll
+C:\Users\Astuti Widoretno\Documents\github tifa\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.pdb
+C:\Users\Latifa Zahra\Desktop\Mini Project Gabungan\Project Gabungan\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.dll.config
+C:\Users\Latifa Zahra\Desktop\Mini Project Gabungan\Project Gabungan\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.dll
+C:\Users\Latifa Zahra\Desktop\Mini Project Gabungan\Project Gabungan\ngxsis\Xsis.Repo\bin\Debug\Xsis.Repo.pdb
+C:\Users\Latifa Zahra\Desktop\Mini Project Gabungan\Project Gabungan\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.dll
+C:\Users\Latifa Zahra\Desktop\Mini Project Gabungan\Project Gabungan\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Latifa Zahra\Desktop\Mini Project Gabungan\Project Gabungan\ngxsis\Xsis.Repo\bin\Debug\Xsis.Model.dll
+C:\Users\Latifa Zahra\Desktop\Mini Project Gabungan\Project Gabungan\ngxsis\Xsis.Repo\bin\Debug\Xsis.ViewModel.dll
+C:\Users\Latifa Zahra\Desktop\Mini Project Gabungan\Project Gabungan\ngxsis\Xsis.Repo\bin\Debug\Xsis.Model.pdb
+C:\Users\Latifa Zahra\Desktop\Mini Project Gabungan\Project Gabungan\ngxsis\Xsis.Repo\bin\Debug\Xsis.ViewModel.pdb
+C:\Users\Latifa Zahra\Desktop\Mini Project Gabungan\Project Gabungan\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.xml
+C:\Users\Latifa Zahra\Desktop\Mini Project Gabungan\Project Gabungan\ngxsis\Xsis.Repo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Latifa Zahra\Desktop\Mini Project Gabungan\Project Gabungan\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.csprojResolveAssemblyReference.cache
+C:\Users\Latifa Zahra\Desktop\Mini Project Gabungan\Project Gabungan\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.dll
+C:\Users\Latifa Zahra\Desktop\Mini Project Gabungan\Project Gabungan\ngxsis\Xsis.Repo\obj\Debug\Xsis.Repo.pdb

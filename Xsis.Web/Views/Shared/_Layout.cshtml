@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/Custom.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/datepicker/jquery-ui.min.css" rel="stylesheet" />
+        <script src="~/Scripts/modernizr-2.6.2.js"></script>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Xsis", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Pendidikan", "Index", "RiwayatPendidikan")</li>
+                        <li>@Html.ActionLink("Sertifikasi", "Index", "Sertifikasi")</li>
+                        <li>@Html.ActionLink("Forgot", "Index", "ForgotPassword")</li>
+                        <li>@Html.ActionLink("Aktifasi", "Index", "AktivasiAkunTesOnline")</li>
+                        <li>@Html.ActionLink("Keahlian", "Index", "Keahlian")</li>
+                        <li>@Html.ActionLink("Pekerjaan", "Index", "Pekerjaan")</li>
+                        <li>@Html.ActionLink("Pengguna", "Index", "Pengguna")</li>
+                        <li>@Html.ActionLink("Proyek", "Index", "Proyek")</li>
+                        <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                        <li>@Html.ActionLink("Catatan", "Index", "Catatan")</li>
+                        <li>@Html.ActionLink("Keluarga", "Index", "Keluarga")</li>
+                        <li>@Html.ActionLink("Biodata", "Index", "Biodata")</li>
+                        <li>@Html.ActionLink("Org", "Index", "Organisasi")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/datepicker/jquery-ui.min.js"></script>
+    </body>
+    </html>

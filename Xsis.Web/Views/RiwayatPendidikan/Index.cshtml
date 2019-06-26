@@ -1,0 +1,385 @@
+﻿@model IEnumerable<Xsis.Model.Riwayat_Pendidikan>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .bgr-popup {
+        width: 1150px;
+        height: 680px;
+        border-color: #000080;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #000080;
+    }
+
+    .cntr-popup {
+        margin-left: 3.5%;
+    }
+
+    .hdr-popup {
+        height: 45px;
+        background-color: #000080;
+        color: white;
+    }
+
+    .cntr-hdr {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        justify-content: space-between; /*button exit na jadi gak nempel lagi ke modal title*/
+    }
+
+    .vertical-menu {
+        width: 230px;
+    }
+
+    .vertical-menu a {
+       display: block;
+       padding: 12px;
+       text-decoration: none;
+       height: 38px;
+       display: flex;
+       align-items: center;
+       align-content: center;
+       border-color: #000080;
+       border-style: solid;
+       border-width: 1px;
+       border-bottom-width: 0;
+       color: #000080;
+       padding-left: 20%;
+     }
+
+    .vertical-menu a:hover {
+       background-color: #b3b3ff;
+    }
+
+    .table-style {
+        border: 20px;
+        color: #000080;
+    }
+
+    .button-more {
+        background-color: #000080;
+        color: white;
+    }
+
+    .bgr-popup-sm {
+        border-color: #000080;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #000080;
+    }
+
+    .cntr-hdr-sm{
+        /*margin-left: 50%;*/
+        margin-top: 50%;
+    }
+
+    .modal-dialog-edit{
+        width: 800px;
+        margin-top: 7%;
+    }
+
+    .modal-content-edit{
+        margin:0px; 
+    }
+
+    .margin-set{
+        margin-bottom:2px;
+        margin-left:3px;
+        margin-right:3px;
+        margin-top:3px;
+    }
+
+    .hdr-popup-alert {
+        background-color: darkred;
+        color: white;
+    }
+
+</style>
+
+
+<h1>Detil Pendidikan</h1>
+
+@*----------LAYOUT POPUP------------*@
+@*<button id="log" data-toggle="modal" data-target="#myModal">POPUP</button>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog cntr-popup" role="document">
+        <div class="modal-content bgr-popup">
+            <div class="modal-header hdr-popup cntr-hdr">
+                <h4 class="modal-title">Detil Pelamar</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="vertical-menu">
+                            <a href="#" id="idAProfile">Profil</a>
+                            <a href="#" id="idABiodata">Biodata</a>
+                            <a href="#" id="idAPengalaman">Pengalaman Kerja</a>
+                            <a href="#" id="idAPendidikan">Pendidikan</a>
+                            <a href="#" id="idAPelatihan">Pelatihan</a>
+                            <a href="#" id="idASertifikasi">Sertifikasi</a>
+                            <a href="#">Sumber Lowongan Kerja</a>
+                            <a href="#">Organisasi</a>
+                            <a href="#">Keluarga</a>
+                            <a href="#">Keahlian</a>
+                            <a href="#">Lain-Lain</a>
+                            <a href="#">Dokumen</a>
+                            <a href="#">Catatan</a>
+                            <a href="#">Aktivasi Akun</a>
+                            <a href="#">Lihat Test</a>
+                            <a href="#" style="border-bottom-width:1px;">Hasil Test</a>
+                        </div>
+                    </div>*@
+
+                    @*------------------------------TEMPAT TABLE------------------------------------*@
+                        <div id="idPendidikan">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="tblRiwayatPendidikan">
+                                    <thead class="table-style">
+                                        <tr>
+                                            <th>
+                                                <h3 class="biru">Pendidikan<button type="button" class="btn btn-link clTambahPendidikan"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button></h3>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>Sekolah/Instansi</th>
+                                            <th>Jenjang</th>
+                                            <th>Periode</th>
+                                            <th>Jurusan</th>
+                                            <th>IPK</th>
+                                            <th>#</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-style" s id="tblBodyRiwayatPendidikan"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    @*-------------------------------------------------------------------------------*@
+
+                @*</div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+
+@*--------Modal tambah Pendidikan--------*@
+
+<div class="modal fade" id="idMdlTambahPendidikan" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-edit" role="document">
+        <div class="modal-content">  @*modal-content-edit bgr-popup-sm*@
+            <div class="modal-header hdr-popup">
+                <h4 class="modal-title">
+                    Tambah Pendidikan
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; opacity:1;">x</button>
+                </h4>
+            </div>
+            <div class="modal-body" id="idBodyTambahPendidikan">
+                @*tempat modal tambah pendidikan*@
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+@*-------Modal Edit Pendidikan-----------*@
+
+ <div class="modal fade" id="idMdlEditPendidikan" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-edit" role="document">
+        <div class="modal-content">
+            <div class="modal-header hdr-popup">
+                <h4 class="modal-title">
+                    Ubah Pendidikan
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; opacity:1;">x</button>
+                </h4>
+            </div>
+            <div class="modal-body" id="idBodyEditPendidikan">
+                @*tempat modal edit pendidikan*@
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->    
+
+
+@*-------Modal Alert Delete-----------*@
+
+<div class="modal fade" id="idMdlAlert" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document" style="margin-top: 15%">
+        <div class="modal-content">
+            <div class="modal-header hdr-popup-alert">
+                <h4 class="modal-title">
+                    Hapus Pendidikan?
+                </h4>
+            </div>
+            <div class="modal-body" style="margin-top:7%;">
+                <div class="row" style="margin-bottom:7%;">
+                    <div class="col-lg-3" style="margin-left:6px;">
+                        <img src="http://cdn.onlinewebfonts.com/svg/img_510054.png" alt="dustbin icon" style="width:90px;height:90px;">
+                    </div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-7" id="idBodyAlert" style="margin-top:4%; color:darkred; font-size: 15px;"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8"></div>
+                    <div class="col-lg-4 btn-group">
+                       <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color: orangered;">&nbsp Tidak &nbsp</button>
+                       <button type="button" class="btn btn-primary clHapusData" style="background-color: darkred;">&nbsp &nbsp Ya &nbsp &nbsp</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->         
+
+
+
+<script>
+    var biodata_id = 2;
+    $(document).ready(function () {
+        var vStrHtml = '';
+        
+       $.ajax({
+           url: '/RiwayatPendidikan/Tampil',
+           data: { id: biodata_id },
+           method: 'Get',
+           success: function (mdl) {
+               debugger;
+               $.each(mdl, function (i, d) { //menjahit data ke dalam tabel
+                   if (d.is_delete == false) {
+
+                       if (d.major == null) {
+                           d.major = '-';
+                       }
+                       if (d.gpa == null) {
+                           d.gpa = '-';
+                       }
+                       vStrHtml = vStrHtml + '<tr>' +
+                               '<td>' + d.school_name + '</td>' +
+                               '<td>' + d.education_level_name + '</td>' +
+                               '<td>' + d.entry_year + " s.d " + d.graduation_year + '</td>' +
+                               '<td>' + d.major + '</td>' +
+                               '<td>' + d.gpa + '</td>' +
+                               '<td class="dropdown">' +
+                                  '<button class="btn btn-primary button-more btn-sm dropdown-toggle" type="button" data-toggle="dropdown">More &nbsp;' +
+                                  '<span class="caret"></span>' +
+                                  '</button>' +
+                                  '<ul class="dropdown-menu">' +
+                                  '<li><a href="" class="control clUbah" data-toggle="collapse" getData="' + d.id + '">Ubah</a></li>' +
+                                  '<li><a href="" class="control clHapus" data-toggle="collapse" getDataFull=\'' + JSON.stringify(d) + '\'>Hapus</a></li>' +
+                                  '</ul>' +
+                               '</td>' +
+                               '</tr>';
+                   }
+               });
+
+               $('#tblBodyRiwayatPendidikan').append(vStrHtml); //memasukan data yg sudah di jahit ke dalam body
+
+           },
+           error: function (mdl) {
+               debugger;
+           }
+
+       });
+
+
+       //memunculkan modal tambah pendidikan
+       $('.clTambahPendidikan').click(function () {
+           debugger;
+           
+           $.ajax({
+               url: '/RiwayatPendidikan/Tambah',
+               data: { id: biodata_id },
+               method: 'Get',
+               success: function (mdl) {
+                   debugger;
+                   $('#idBodyTambahPendidikan').empty();
+                   $('#idBodyTambahPendidikan').append(mdl);
+                   //$('#myModal').modal('hide');
+                   $('#idMdlTambahPendidikan').modal('show');
+
+                   debugger;
+               },
+               error: function (mdl) {
+                   debugger;
+               }
+           });
+       });
+       
+       
+       //hapus data
+       $(document).on("click", ".clHapus", function () {
+           debugger;
+           var vHapus = JSON.parse($(this).attr('getDataFull'));
+           var vDataHapus = vHapus.id;
+               debugger;
+                   var vAlert = '<tr>' +
+                                '<td align="center">Anda yakin ingin menghapus pendidikan di &nbsp <br/><strong>'+ 
+                                 vHapus.education_level_name + '&nbsp' + vHapus.school_name + '?' + '</strong></td>' +
+                                '</tr>';
+
+                   $('#idBodyAlert').empty(vAlert);
+                   $('#idBodyAlert').append(vAlert);
+                   $('#idMdlAlert').modal('show');
+
+           //tomblok klik alert hapus data
+             $('.clHapusData').click(function () {
+                debugger;
+
+                 $.ajax({
+                     url: '/RiwayatPendidikan/Hapus',
+                     data: { ID: vDataHapus },
+                     method: 'Post',
+                     success: function (mdl) {
+                        location.reload();
+                         debugger;
+                     },
+                     error: function (mdl) {
+                         debugger;
+                     }
+                });
+             });
+
+       });
+
+
+       //ubah data
+       $(document).on("click", ".clUbah", function () {
+           debugger;
+           var vDataUbah = JSON.parse($(this).attr('getData'));
+           debugger;
+           $.ajax({
+               url: '/RiwayatPendidikan/Edit',
+               data: { ID: vDataUbah },
+               method: 'Post',
+               success: function (mdl) {
+                   $('#idBodyEditPendidikan').empty();
+                   $('#idBodyEditPendidikan').append(mdl);
+                   $('#idget').val(vDataUbah); //memasukan nilai vDataID ke dalam idget pada partial view _Edit
+                   $('#idMdlEditPendidikan').modal('show');
+                   debugger;
+               },
+               error: function (mdl) {
+                   debugger;
+               }
+           });
+       });
+
+
+        //tempat a href klik yg diajarin pak Heru
+       //var x = document.getElementById("idPendidikan");
+       //x.style.display = "none";
+       //$('#idAPendidikan').click(function () {
+       //    debugger;
+       //    var x = document.getElementById("idPendidikan");
+       //    var x2 = document.getElementById("idSertifikasi");
+       //    x.style.display = "block";
+       //    x2.style.display = "none";   
+       //});
+   });
+
+</script>

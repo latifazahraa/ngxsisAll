@@ -1,0 +1,70 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.biru{
+    color:#000080;
+    font-weight:bold;
+}
+.birutext{
+    color:#000080;
+}
+.birubg{
+    background-color:#000080;
+    color:white;
+}
+.merahbg{
+    background-color:#A92E13;
+    color:white;
+}
+.biruwoy{
+    background-color:#000080;
+    color:white;
+}
+.biruwoy:hover{
+    background-color:blue;
+}
+.orenwoy{
+    background-color:orangered;
+    color:white;
+}
+.orenwoy:hover{
+    background-color:red;
+}
+.merahwoy{
+    background-color:#A92E13;
+    color:white;
+}
+.merahwoy:hover{
+    background-color:red;
+    color:white;
+}
+.table{
+    color:#000080;
+}
+.lebarwoy{
+    position:center;
+    width:800px;
+}
+.tengahwoy{
+    padding-right:800px;
+}
+.tengahpls{
+    background-color:none;
+    padding-top:150px;
+    width:500px;
+}
+.lebarpls{
+    margin-left:50px;
+    width:500px;
+    height:220px;
+}
+.merahtext{
+    color:#A92E13;
+}

@@ -1,0 +1,341 @@
+﻿<style>
+    .form-custom {
+        border-color: #000080;
+        border-width: 2px;
+        height: 45px;
+    }
+
+    .name-clr {
+        color: #000080;
+        font-size: 10px;
+    }
+
+    [data-validation-message] {
+        display: none;
+        color: red;
+        font-weight: bold;
+    }
+
+    [data-validation-message].message-visible {
+         display: block;
+    }
+
+    .form-custom.invalid {
+        border-color: red;
+    }
+</style>
+
+<form action="" class="margin-set" method="post" id="idFrmEditPendidikan">
+    <div class="row">
+        <div class="col-lg-6">
+            <label for="idSklhInstansiEdit" class="name-clr">Nama Sekolah/Instansi*</label><br />
+            <input type="text" name="school_name" data-validate="required" class="form-control form-custom" id="idSklhInstansiEdit" placeholder="">
+            <input type="hidden" name="id" id="idget" /> @*untuk mengambil id dari data yang akan diedit*@
+            <small role="alert"
+                   aria-hidden="true"
+                   data-validation-message="required">
+                Nama Sekolah/Instansi Harus Diisi.
+            </small>
+        </div>
+
+        <div class="col-lg-3">
+            <label for="idKotaEdit" class="name-clr">Kota</label><br />
+            <input type="text" name="city" class="form-control form-custom" id="idKotaEdit" placeholder="">
+        </div>
+
+        <div class="col-lg-3">
+            <label for="idNegaraEdit" class="name-clr">Negara</label><br />
+            <input type="text" name="country" class="form-control form-custom" id="idNegaraEdit" placeholder="">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label for="idJenjangEdit" class="name-clr">Jenjang Pendidikan*</label><br />
+            <select type="text" name="education_level_id" data-validate="required" class="form-control form-custom" id="idJenjangEdit" placeholder="-Pilih-">
+                @*<option value="">-Pilih-</option>
+                <option value="1">SD</option>
+                <option value="2">SMP</option>
+                <option value="3">SMA</option>
+                <option value="4">Sarjana</option>*@
+            </select>
+            <small role="alert"
+                   aria-hidden="true"
+                   data-validation-message="required">
+                Jenjang Pendidikan Harus Diisi.
+            </small>
+        </div>
+
+        <div class="col-lg-3">
+            <label for="idThnMasukEdit" class="name-clr">Tahun Masuk</label><br />
+            <select type="text" name="entry_year" class="form-control form-custom" id="idThnMasukEdit" placeholder="-Pilih-">
+                <option>-Pilih Tahun-</option>
+            </select>
+        </div>
+
+        <div class="col-lg-3">
+            <label for="idThnLulusEdit" class="name-clr">Tahun Lulus</label><br />
+            <select type="text" name="graduation_year" data-validate="years" class="form-control form-custom" id="idThnLulusEdit" placeholder="-Pilih-">
+                <option>-Pilih Tahun-</option>
+            </select>
+            <small role="alert"
+                   aria-hidden="true"
+                   data-validation-message="years">
+                Tahun Lulus tidak valid.
+            </small>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <label for="idJurusan" class="name-clr">Jurusan</label><br />
+            <input type="text" name="major" class="form-control form-custom" id="idJurusanEdit" placeholder="">
+        </div>
+
+        <div class="col-lg-6">
+            <label for="idIPK" class="name-clr">IPK</label><br />
+            <input type="text" name="gpa" class="form-control form-custom" id="idIPKEdit" placeholder="">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <label for="idCttn" class="name-clr">Catatan</label><br />
+            <textarea class="form-control form-custom col-md-12" id="idCttnEdit" name="notes" style="height:100px;"></textarea><br />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12" align="right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-lg" style="background-color: orangered;" id="idBtnBatalEdit">&nbsp Batal &nbsp</button>
+                <button type="submit" class="btn btn-primary btn-lg" id="idBtnSimpanEdit">Simpan</button>
+            </div>
+        </div>
+    </div>
+
+</form>      
+
+
+
+<script>
+    var d = new Date();
+    var vMasuk = "";
+    var vLulus = "";
+    $(document).ready(function () {
+        debugger;
+
+        // memunculkan opsi jenjang pendidikan
+        var vSelect = '<option>' + "-Pilih Jenjang-" + '</option>';
+        $.ajax({
+            url: '/RiwayatPendidikan/Select',
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $.each(mdl, function (i, d) { //menjahit data ke dalam tabel
+                    vSelect = vSelect +
+                        '<option value="' + d.id + '">' +
+                            d.name +
+                            '</option>';
+                });
+                $('#idJenjangEdit').empty();
+                $('#idJenjangEdit').append(vSelect); //memasukan data yg sudah di jahit ke dalam body
+            },
+            error: function (mdl) {
+                debugger;
+            }
+        });
+
+        // memunculkan tahun masuk
+        var vOption = "";
+        for (var i = d.getFullYear() ; i >= 1970; i--) {
+            vOption = vOption +
+            '<option>' + i + '</option>'
+        }
+
+        $('#idThnMasukEdit').empty();
+        $('#idThnMasukEdit').append(vOption);
+        $('#idThnLulusEdit').empty();
+        $('#idThnLulusEdit').append(vOption);
+
+        $.ajax({
+            url: '/RiwayatPendidikan/AmbilData',
+            data: { ID: $('#idget').val() },
+            method: 'Get',
+            success: function (mdl) {
+                debugger;
+                $('#idSklhInstansiEdit').val(mdl.school_name);
+                $('#idJenjangEdit').val(mdl.education_level_id).selected;
+                $('#idKotaEdit').val(mdl.city);
+                $('#idJurusanEdit').val(mdl.major);
+                $('#idNegaraEdit').val(mdl.country);
+                $('#idThnMasukEdit').val(mdl.entry_year).selected;
+                $('#idThnLulusEdit').val(mdl.graduation_year).selected;
+                $('#idIPKEdit').val(mdl.gpa);
+                $('#idCttnEdit').val(mdl.notes);
+
+                vMasuk = mdl.entry_year;
+                vLulus = mdl.graduation_year;
+                fTahunLulus(vMasuk, vLulus);
+            },
+            error: function (mdl) {
+                debugger;
+            }
+        });    
+    });
+    $('#idThnMasukEdit').click(function () {
+        vMasuk = $('#idThnMasukEdit').val();
+        vLulus = $('#idThnLulusEdit').val();
+        fTahunLulus(vMasuk, vLulus);     
+    });
+
+    $('#idBtnBatalEdit').click(function () {
+        $('#idMdlEditPendidikan').close;
+        location.reload();
+    });
+
+    function simpaneditpendidikan() {
+        debugger;
+        var vDataEdit = $('#idFrmEditPendidikan').serialize();
+        $.ajax({
+            url: '/RiwayatPendidikan/EditSimpan',
+            data: vDataEdit,
+            method: 'Post',
+            success: function (mdl) {
+                if (mdl.EditSimpan == "Berhasil") {
+                    debugger;
+                    alert("Data berhasil diEdit");
+                    $('#idMdlEditPendidikan').close;
+                    location.reload();
+                    $('#myModal').modal('show');
+
+                }
+                else {
+                    debugger;
+                    alert("Data gagal diEdit");
+                    $('#myModal').modal('show');
+                }
+            }
+        });
+    }
+    // membatasi tahun keluar
+    function fTahunLulus(vMasuk, vLulus) {
+        var vGradOption = '<option>' + vLulus + '</option>';
+
+        debugger;
+        for (var i = d.getFullYear()+5 ; i >= vMasuk; i--) {
+            vGradOption = vGradOption +
+            '<option>' + i + '</option>'
+        }
+
+        $('#idThnLulusEdit').empty();
+        $('#idThnLulusEdit').append(vGradOption);
+
+    }
+
+
+</script>
+
+<script>
+// (1) Defining our validator-functions for later use. They return "true", if the validation passes.
+
+    const validators = {
+  
+    required: element => element.value.length > 0, // Checks the field for emptiness.
+    noNumbers: element => !element.value.match(/[0-9]/g), // Checks if there are no numbers in the field.
+    maxLength: element => element.value.length <= 10, // Checks if the value is shorter than 10 characters.
+    years: element => element.value >= document.getElementById("idThnMasukEdit").value,
+
+        // Checks if the checkbox is checked.
+    mustBeChecked: element => element.checked
+};
+
+// (2) Check the contents of an input, get all validators, and mark the field in case of invalidity.
+function validateElement(element) {
+  resetValidation(element);
+
+  // Store all validators from the data-validate-attribute into an array.
+  const rules = element.dataset.validate.split(" ");
+
+  // For every validator on the field...
+  rules.forEach(rule => {
+    // ...find the corresponding validator-function from our object from #1 and call it with the element as parameter.
+    if (validators[rule](element)) {
+      // If the function returns true, all is fine.
+        debugger;
+        return;
+    } else {
+      // If it returns false, the validation failed. In that case, the markElementInvalid-function takes care of showing the error-message.
+      markElementInvalid(element, rule);
+    }
+  });
+}
+
+// (3) Adds classes to an element, so it appears invalid. Also it picks the correct feedback- message and sets it visible.
+function markElementInvalid(element, validatorName) {
+  element.classList.add("invalid");
+  element.setAttribute("aria-invalid", true);
+  const feedbackMessage = element.parentNode.querySelector(
+    `[data-validation-message=${validatorName}]`
+  );
+  feedbackMessage.classList.add("message-visible");
+  feedbackMessage.setAttribute("aria-hidden", false);
+}
+
+// (4) Removes all traces of validation from an element, like the error-messages and the styling.(Pretty much the opposite of #3)
+function resetValidation(element) {
+  element.classList.remove("invalid");
+  element.setAttribute("aria-invalid", false);
+  element.parentNode
+    .querySelectorAll("[data-validation-message]")
+    .forEach(e => {
+      e.classList.remove("message-visible");
+      e.setAttribute("aria-hidden", true);
+    });
+}
+
+// (5) Store the form and its inputs in variables.
+const form = document.getElementById("idFrmEditPendidikan");
+const formElements = Array.from(form.elements);
+
+// (6) Every input gets an event-listener attached.
+formElements.forEach(formElement => {
+  // Do nothing if the element has no data-validate-attribute.
+  if (!formElement.dataset) return;
+  if (!formElement.dataset.validate) return;
+
+  // Attach the blur-event-listener to the element.
+  formElement.addEventListener("", () => {
+    // This means, validateElement will be called everytime the element loses focus.
+    validateElement(formElement);
+  });
+});
+
+// (7) We're doing what we did at #3, only on form-submit, and for every field.
+form.addEventListener("submit", event => {
+  // Let's assume, everything is fine.
+  let formIsValid = true;
+  form.classList.remove("invalid");
+  debugger;
+  // We'll check every field in the form. (same as #3)
+  formElements.forEach(formElement => {
+    if (!formElement.dataset) return;
+    if (!formElement.dataset.validate) return;
+    validateElement(formElement);
+  });
+
+  // If there are any "invalid"-classes after we checked all fields, the form is invalid...
+  formIsValid = form.querySelectorAll(".invalid").length === 0;
+
+  // ...and will not be submitted.
+  if (formIsValid === false) {
+    form.classList.add("invalid");
+    event.preventDefault();
+  }
+  else {
+      debugger;
+      simpaneditpendidikan();
+  }
+});
+</script>
+
